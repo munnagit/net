@@ -11,7 +11,7 @@
 
 	<link rel="stylesheet" href="assets/demo.css">
     <link rel="stylesheet" href="assets/form-basic.css">
-       
+
     <!-- Below two scripts are for enabling jquery based date picker to support firefox -->
     <script type="text/javascript">
         var datefield = document.createElement("input")
@@ -22,7 +22,7 @@
             document.write('<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"><\/script>\n')
         }
     </script>
-    
+
     <script>
         if (datefield.type != "date") { //if browser doesn't support input type="date", initialize date picker widget:
             jQuery(function ($) { //on document.ready
@@ -48,12 +48,12 @@ if (isset($_POST["name"])) {
     $birthday= $_POST['birthday'];
     $dor= date('Y-m-d');
     echo "Order: ". $_POST['birthday']. "<br />"; //Result Check
-  
+
     //DB Connectivity & Insert Query
     include("connection.php");
-    
+
     $sql = "INSERT INTO tbl_clients ". "(cname, mno, uid, address,sbiaccno, cif, city, email, gender, dob, dor)". "VALUES('$name','$mob','$uid','$adrs','$sbiaccno','$cif','$cty','$email','$gndr','$birthday','$dor')";
-         
+
     if ($con->query($sql) === true) {
         //echo "New record created successfully"; echo "<br />";
         echo "<div class='alert success'>
@@ -65,7 +65,7 @@ if (isset($_POST["name"])) {
     }
     $con->close();
 }
-?> 
+?>
     <header>
         <center><h1>NetTech New Customer</h1></center>
         <!-- <a href="http://tutorialzine.com/2015/07/freebie-7-clean-and-responsive-forms/">Download</a> -->
@@ -157,7 +157,7 @@ if (isset($_POST["name"])) {
             <div class="form-row">
                 <label>
                     <span>Date Of Birth</span>
-                    <input type="date" id="birthday" name="birthday" size="20" />  
+                    <input type="date" id="birthday" name="birthday" size="20" />
                 </label>
             </div>
 
@@ -171,5 +171,5 @@ if (isset($_POST["name"])) {
     </div>
 
 </body>
-
+is this working ? 
 </html>
