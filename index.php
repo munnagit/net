@@ -52,7 +52,7 @@ if (isset($_POST["name"])) {
     //DB Connectivity & Insert Query
     include("connection.php");
 
-    $sql = "INSERT INTO tbl_clients ". "(cname, mno, uid, address,sbiaccno, cif, city, email, gender, dob, dor)". "VALUES('$name','$mob','$uid','$adrs','$sbiaccno','$cif','$cty','$email','$gndr','$birthday','$dor')";
+    $sql = "INSERT INTO tbl_clients ". "(cname, mno, address,sbiaccno, cif, city, email, gender, dob, dor)". "VALUES('$name','$mob','$adrs','$sbiaccno','$cif','$cty','$email','$gndr','$birthday','$dor')";
 
     if ($con->query($sql) === true) {
         //echo "New record created successfully"; echo "<br />";

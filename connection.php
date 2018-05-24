@@ -1,6 +1,6 @@
 <?php
 
-	$servername="localhost";
+	$servername="nettech.cf";
 	$username="nettech_sasi";
 	$password="XMQ5ROD_MNYq";
 	$db_name="nettech_main";

@@ -3,13 +3,13 @@
 
  <head>
 
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Basic Form</title>
+  	<title>Basic Form</title>
 
-	<link rel="stylesheet" href="../assets/demo.css">
+	  <link rel="stylesheet" href="../assets/demo.css">
     <link rel="stylesheet" href="../assets/form-basic.css">
 
     <!-- Required CSS for table -->
@@ -54,13 +54,14 @@
 
  <body>
     <header>
-    <center><h1>NetTech SBI Banking</h1></center>
+    <center><h1>NetTech Transactions</h1></center>
         <!-- <a href="http://tutorialzine.com/2015/07/freebie-7-clean-and-responsive-forms/">Download</a> -->
     </header>
 
     <ul>
         <li><a href="../index.php">New Client</a></li>
-        <li><a href="index.php" class="active">Customer Banking</a></li>
+        <li><a href="index.php">Customer Banking</a></li>
+        <li><a href="nettechtrans.php" class="active">Nettech Transactions</a></li>
         <li><a href="personal.php">Self Banking</a></li>
         <li><a href="../form-search.php">Search</a></li>
     </ul>
@@ -116,8 +117,8 @@
         echo "<form action = 'banking/index.php' method = 'POST' class='form-horizontal'>";
         print "<table class=\"responstable\">\n";
         print "         <tr>\n";
-        print "            <th data-th=\"Order Details\"><span>Cash Balance</span></th>\n";
-        print "            <th><span><center>Account Balance</center></span></th>\n";
+        print "            <th data-th=\"Order Details\"><span>Credit</span></th>\n";
+        print "            <th><span><center>Advance</center></span></th>\n";
         print "         </tr>";
         if ($nrows > 0) {
             while ($get_column=$res->fetch_assoc()) {
@@ -150,22 +151,19 @@
                 <span class='closebtn'>&times;</span>
                 <strong>Success!</strong> Client Created Successfully !!!
                 </div>";
-                if($opn=="Deposit")
-                {
-                    $sql = "UPDATE tbl_cash SET scih=scih+'$amt'";
-                    $con->query($sql);
+            if ($opn=="Deposit") {
+                $sql = "UPDATE tbl_cash SET scih=scih+'$amt'";
+                $con->query($sql);
 
-                    $sql = "UPDATE tbl_cash SET scab=scab-'$amt'";
-                    $con->query($sql);
-                }
-                else
-                {
-                    $sql = "UPDATE tbl_cash SET scih=scih-'$amt'";
-                    $con->query($sql);
+                $sql = "UPDATE tbl_cash SET scab=scab-'$amt'";
+                $con->query($sql);
+            } else {
+                $sql = "UPDATE tbl_cash SET scih=scih-'$amt'";
+                $con->query($sql);
 
-                    $sql = "UPDATE tbl_cash SET scab=scab+'$amt'";
-                    $con->query($sql);
-                }
+                $sql = "UPDATE tbl_cash SET scab=scab+'$amt'";
+                $con->query($sql);
+            }
         } else {
             echo "Error: " . $sql . "<br>" . $con->error;
         }
