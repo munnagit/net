@@ -70,7 +70,17 @@
              $res=$con->query($sql);
              $nrows=$res->num_rows;
              echo "<br><br><br>";
-             echo "<form action = 'banking/index.php' method = 'POST' class='form-horizontal'>";
+
+
+             //echo "<form action = 'banking/index.php' method = 'POST' class='form-horizontal'>";
+
+             if (isset($_POST['banking'])) {
+                echo "<form action = 'banking/index.php' method = 'POST' class='form-horizontal'>";
+            }
+            elseif (isset($_POST['nettech'])) {
+                echo "<form action = 'banking/nettechtrans.php' method = 'POST' class='form-horizontal'>";
+            }
+             echo "<form action = 'banking/nettechtrans.php' method = 'POST' class='form-horizontal'>";
              print "<table class=\"responstable\">\n";
              print "         <tr>\n";
              print "            <th><span>Select</span></th>\n";
@@ -126,7 +136,7 @@
               </div>
 
               <div id='float2' style='width:50%;float:left;padding: 12px'>
-              <button type='submit' name='nettech' value='nettech'>NetTech</button>
+              <button type='submit' name='nettech' value='nettech' formaction='banking/nettechtrans.php'>NetTech</button>
               </div>
             </div>
 
@@ -136,6 +146,10 @@
              mysqli_close($con);
          }
         ?>
+        <?php
+        ?>
+
+
 
   </div>
 
