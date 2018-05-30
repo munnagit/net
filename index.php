@@ -47,7 +47,7 @@ if (isset($_POST["name"])) {
     $gndr= $_POST['gndr'];
     $birthday= $_POST['birthday'];
     $dor= date('Y-m-d');
-    echo "Order: ". $_POST['birthday']. "<br />"; //Result Check
+    //echo "Order: ". $_POST['birthday']. "<br />"; //Result Check
 
     //DB Connectivity & Insert Query
     include("connection.php");
@@ -56,9 +56,9 @@ if (isset($_POST["name"])) {
 
     if ($con->query($sql) === true) {
         //echo "New record created successfully"; echo "<br />";
-        echo "<div class='alert success'>
+        echo "<div class='alert success' style='background-color: #49ce49';>
         <span class='closebtn'>&times;</span>
-        <strong>Success!</strong> Client Created Successfully !!!
+        <center><strong>Success!</strong> Client Created Successfully !!! <center>
         </div>";
     } else {
         echo "Error: " . $sql . "<br>" . $con->error;

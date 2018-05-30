@@ -77,10 +77,8 @@
              if (isset($_POST['banking'])) {
                 echo "<form action = 'banking/index.php' method = 'POST' class='form-horizontal'>";
             }
-            elseif (isset($_POST['nettech'])) {
-                echo "<form action = 'banking/nettechtrans.php' method = 'POST' class='form-horizontal'>";
-            }
-             echo "<form action = 'banking/nettechtrans.php' method = 'POST' class='form-horizontal'>";
+
+             echo "<form action = 'banking/index.php' method = 'POST' class='form-horizontal'>";
              print "<table class=\"responstable\">\n";
              print "         <tr>\n";
              print "            <th><span>Select</span></th>\n";

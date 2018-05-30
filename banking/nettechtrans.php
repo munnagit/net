@@ -80,10 +80,10 @@
           $nrows=$res->num_rows;
           echo "<br>";
           echo "<form action = 'banking/index.php' method = 'POST' class='form-horizontal'>";
-          print "<table class=\"responstable\">\n";
+          print "<table class=\"responstable\" style= \"margin: 0 auto;max-width: 1250px\";>\n";
           print "         <tr>\n";
           print "            <th data-th=\"Order Details\"><span>Client ID</span></th>\n";
-          print "            <th>Name</th>\n";
+          print "            <th><center>Name</center></th>\n";
           print "            <th>Mobile Number</th>\n";
           print "            <th>Aadhar</th>\n";
           print "            <th>SBI ACCNO</th>\n";
@@ -93,7 +93,7 @@
           if ($nrows > 0) {
               while ($get_column=$res->fetch_assoc()) {
                   echo "<td>". $get_column['cid']."</td>";
-                  echo "<td>". $get_column['cname']."</td>";
+                  echo "<td WIDTH='25%''>". $get_column['cname']."</td>";
                   echo "<td>". $get_column['mno']."</td>";
                   echo "<td>". $get_column['uid']."</td>";
                   echo "<td>". $get_column['sbiaccno']."</td>";
@@ -132,38 +132,28 @@
             </form>";
           mysqli_close($con);
 
-      //phpcode responsibele for inserting into tbl_sbitrans
-      if (isset($_POST["type"])) {
-          $type = $_POST['type'];
-          $opn= $_POST['opn'];
-          $amt= $_POST['amt'];
-          $refno= $_POST['refno'];
-          //echo ": ". $_POST['birthday']. "<br />"; //Result Check
+      //phpcode responsibele for inserting into tbl_nettrans
+      if (isset($_POST["des"])) {
+          $des = $_POST['des'];
+          $sp= $_POST['sp'];
+          $cp= $_POST['cp'];
+          $cashpay= $_POST['cashpay'];
+          $adv= $_POST['adv'];
+          $cdt= $_POST['cdt'];
+
+          //echo "Order: ". $_POST['birthday']. "<br />"; //Result Check
 
           //DB Connectivity & Insert Query
           include("../connection.php");
 
-          $sql = "INSERT INTO tbl_sbitrans ". "(cid, type, opn, amt, refno)". "VALUES('$cid','$type','$opn','$amt','$refno')";
+          $sql = "INSERT INTO tbl_nettrans ". "(cid, des, sp, cp, cashpay, adv, cdt)". "VALUES('$cid','$des','$sp','$cp','$cashpay','$adv','$cdt')";
 
           if ($con->query($sql) === true) {
               //echo "New record created successfully"; echo "<br />";
               echo "<div class='alert success'>
-                  <span class='closebtn'>&times;</span>
-                  <strong>Success!</strong> Client Created Successfully !!!
-                  </div>";
-              if ($opn=="Deposit") {
-                  $sql = "UPDATE tbl_cash SET scih=scih+'$amt'";
-                  $con->query($sql);
-
-                  $sql = "UPDATE tbl_cash SET scab=scab-'$amt'";
-                  $con->query($sql);
-              } else {
-                  $sql = "UPDATE tbl_cash SET scih=scih-'$amt'";
-                  $con->query($sql);
-
-                  $sql = "UPDATE tbl_cash SET scab=scab+'$amt'";
-                  $con->query($sql);
-              }
+              <span class='closebtn'>&times;</span>
+              <strong>Success!</strong> Transaction Created Successfully !!!
+              </div>";
           } else {
               echo "Error: " . $sql . "<br>" . $con->error;
           }
@@ -193,7 +183,7 @@
             <div class="form-row">
               <label>
                   <span>Description</span>
-                  <input type="text" name="desc">
+                  <input type="text" name="des">
               </label>
             </div>
 
@@ -214,7 +204,7 @@
             <div class="form-row">
                 <label>
                     <span>Cash Payment</span>
-                    <input type="number" name="csp">
+                    <input type="number" name="cashpay">
                 </label>
             </div>
 
