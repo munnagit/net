@@ -173,127 +173,128 @@
             </form>";
           mysqli_close($con);
 
-      //phpcode responsibele for inserting into tbl_nettrans
-      if (isset($_POST["des"])) {
-          $des = $_POST['des'];
-          $sp= $_POST['sp'];
-          $cp= $_POST['cp'];
-          $cashpay= $_POST['cashpay'];
-          $adv= $_POST['adv'];
-          $cdt= $_POST['cdt'];
+          //phpcode responsibele for inserting into tbl_nettrans
+          if (isset($_POST["des"])) {
+              $des = $_POST['des'];
+              $sp= $_POST['sp'];
+              $cp= $_POST['cp'];
+              $cashpay= $_POST['cashpay'];
+              $adv= $_POST['adv'];
+              $cdt= $_POST['cdt'];
+              $pft= $_POST['pft'];
 
-          //echo "Order: ". $_POST['birthday']. "<br />"; //Result Check
+              //echo "Order: ". $_POST['adv']. "<br />"; //Result Check
 
-          //DB Connectivity & Insert Query
-          include("../connection.php");
+              //DB Connectivity & Insert Query
+              include("../connection.php");
 
-          $sql = "INSERT INTO tbl_nettrans ". "(cid, des, sp, cp, cashpay, adv, cdt)". "VALUES('$cid','$des','$sp','$cp','$cashpay','$adv','$cdt')";
+              $sql = "INSERT INTO tbl_nettrans ". "(cid, des, sp, cp, cashpay, adv, cdt, pft)". "VALUES('$cid','$des','$sp','$cp','$cashpay','$adv','$cdt','$pft')";
 
-          if ($con->query($sql) === true) {
-              //echo "New record created successfully"; echo "<br />";
-              echo "<div class='alert success'>
-              <span class='closebtn'>&times;</span>
-              <strong>Success!</strong> Transaction Created Successfully !!!
-              </div>";
-          } else {
-              echo "Error: " . $sql . "<br>" . $con->error;
+              if ($con->query($sql) === true) {
+                  //echo "New record created successfully"; echo "<br />";
+                  echo "<div class='alert success'>
+                  <span class='closebtn'>&times;</span>
+                  <strong>Success!</strong> Transaction Created Successfully !!!
+                  </div>";
+              } else {
+                  echo "Error: " . $sql . "<br>" . $con->error;
+              }
+              $con->close();
           }
-          $con->close();
-      }
-        ?>
+            ?>
 
-        <!-- You only need this form and the form-basic.css -->
+            <!-- You only need this form and the form-basic.css -->
 
-        <form action = "<?php $_PHP_SELF ?>" method = "POST" class="form-basic" method="post" action="#">
+            <form action = "<?php $_PHP_SELF ?>" method = "POST" class="form-basic" method="post" action="#">
 
-            <div class="form-title-row">
-                <h1>Transaction Entry</h1>
-            </div>
+                <div class="form-title-row">
+                    <h1>Transaction Entry</h1>
+                </div>
 
-            <!-- Example Select box
-            <!--<div class="form-row">
-                <label>
-                    <span>Account Type</span>
-                    <select name="type" style="padding-right: 175px;">
-                        <option value="SB-G">SB-G</option>
-                        <option value="SB-T">SB-T</option>
-                    </select>
-                </label>
-            </div> -->
-
-            <div class="form-row">
-              <label>
-                  <span>Description</span>
-                  <input type="text" name="des">
-              </label>
-            </div>
-
-            <div class="form-row">
-                <label>
-                    <span>Selling Price</span>
-                    <input type="number" name="sp" id="sp">
-                </label>
-            </div>
-
-            <div class="form-row">
-                <label>
-                    <span>Credit / Cost Price</span>
-                    <input type="number" name="cp" id="cp">
-                </label>
-            </div>
-
-            <div class="form-row">
-                <label>
-                    <span>Advance / Cash Payment </span>
-                    <input type="number" name="cashpay" id="cashpay" onfocusout="chkAdvance(); cpValue();" />
-                </label>
-            </div>
-
-          <!--  <div class="form-row" style="display: none;"> -->
-            <div class="form-row" style="display: none;">
+                <!-- Example Select box
+                <!--<div class="form-row">
                     <label>
-                        <span>Advance</span>
-                        <input type="number" name="adv" id="adv" disabled>
+                        <span>Account Type</span>
+                        <select name="type" style="padding-right: 175px;">
+                            <option value="SB-G">SB-G</option>
+                            <option value="SB-T">SB-T</option>
+                        </select>
                     </label>
-            </div>
+                </div> -->
 
-            <div class="form-row" style="display: none;">
+                <div class="form-row">
+                  <label>
+                      <span>Description</span>
+                      <input type="text" name="des">
+                  </label>
+                </div>
+
+                <div class="form-row">
                     <label>
-                        <span>Credit</span>
-                        <input type="number" name="cdt" id="cdt" disabled>
+                        <span>Selling Price</span>
+                        <input type="number" name="sp" id="sp">
                     </label>
-            </div>
+                </div>
 
-            <div class="form-row" style="display: none;">
+                <div class="form-row">
                     <label>
-                        <span>Profit</span>
-                        <input type="number" name="pft" id="pft" disabled>
+                        <span>Credit / Cost Price</span>
+                        <input type="number" name="cp" id="cp">
                     </label>
+                </div>
+
+                <div class="form-row">
+                    <label>
+                        <span>Advance / Cash Payment </span>
+                        <input type="number" name="cashpay" id="cashpay" onfocusout="chkAdvance(); cpValue();" />
+                    </label>
+                </div>
+
+              <!--  <div class="form-row" style="display: none;"> -->
+                <div class="form-row" style="display: none;">
+                        <label>
+                            <span>Advance</span>
+                            <input type="number" name="adv" id="adv" readonly="readonly" />
+                        </label>
+                </div>
+
+                <div class="form-row" style="display: none;">
+                        <label>
+                            <span>Credit</span>
+                            <input type="number" name="cdt" id="cdt" readonly="readonly" />
+                        </label>
+                </div>
+
+                <div class="form-row" style="display: none;">
+                        <label>
+                            <span>Profit</span>
+                            <input type="number" name="pft" id="pft" readonly="readonly" />
+                        </label>
+                </div>
+
+                <div class="form-row" id="info" style="display: none;">
+                <table class="responstable" style="margin: 0 auto;max-width: 650px; border: 0px;">
+                  <tbody>
+                    <tr>
+                      <th data-th="Credit Details" style="background-color: #6f7479"><span>Adv</span></th>
+                      <th style="background-color: #6f7479"><span><center>Cdt</center></span></th>
+                      <th style="background-color: #6f7479"><span><center>Nav</center></span></th>
+                    </tr>
+                    <tr>
+                      <td style="color :blue" ><center><p id="tadv"></p></center></td>
+                      <td style="color :red"><center><p id="tcdt"></p></center></td>
+                      <td style="color :green"><center><p id="tpft"></td></center></td>
+                    </tr>
+                  </tbody>
+              </table>
             </div>
 
-            <div class="form-row" id="info" style="display: none;">
-            <table class="responstable" style="margin: 0 auto;max-width: 650px; border: 0px;">
-              <tbody>
-                <tr>
-                  <th data-th="Credit Details" style="background-color: #6f7479"><span>Adv</span></th>
-                  <th style="background-color: #6f7479"><span><center>Cdt</center></span></th>
-                  <th style="background-color: #6f7479"><span><center>Nav</center></span></th>
-                </tr>
-                <tr>
-                  <td style="color :blue" ><center><p id="tadv"></p></center></td>
-                  <td style="color :red"><center><p id="tcdt"></p></center></td>
-                  <td style="color :green"><center><p id="tpft"></td></center></td>
-                </tr>
-              </tbody>
-          </table>
-        </div>
+             <div class="form-row">
+                 <input type='hidden' name='cid' value='<?php echo "$cid";?>'/>
+                 <button type="submit">Enter</button>
+             </div>
 
-         <div class="form-row">
-             <input type='hidden' name='cid' value='<?php echo "$cid";?>'/>
-             <button type="submit">Enter</button>
-         </div>
-
-        </form>
+            </form>
 
     </div>
 
