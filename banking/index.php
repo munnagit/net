@@ -3,13 +3,13 @@
 
  <head>
 
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Basic Form</title>
+    <title>Basic Form</title>
 
-	<link rel="stylesheet" href="../assets/demo.css">
+  	<link rel="stylesheet" href="../assets/demo.css">
     <link rel="stylesheet" href="../assets/form-basic.css">
 
     <!-- Required CSS for table -->
@@ -54,8 +54,8 @@
 
  <body>
     <header>
-    <center><h1>NetTech SBI Banking</h1></center>
-        <!-- <a href="http://tutorialzine.com/2015/07/freebie-7-clean-and-responsive-forms/">Download</a> -->
+      <center><h1>NetTech SBI Banking</h1></center>
+          <!-- <a href="http://tutorialzine.com/2015/07/freebie-7-clean-and-responsive-forms/">Download</a> -->
     </header>
 
     <ul>
@@ -69,108 +69,101 @@
    <div class="main-content">
 
     <?php
-    //phpcode responsibele for displaying user info row in table
-    if (isset($_POST["cid"])) {
-        $cid = $_POST['cid'];
-        //echo "CID: ". $_POST['cid']. "<br />"; //Result Check
-        include("../connection.php");
-        $sql="SELECT * FROM tbl_clients WHERE cid = '".$cid."'";
-        $res=$con->query($sql);
-        $nrows=$res->num_rows;
-        echo "<br>";
-        echo "<form action = 'banking/index.php' method = 'POST' class='form-horizontal'>";
-        print "<table class=\"responstable\">\n";
-        print "         <tr>\n";
-        print "            <th data-th=\"Order Details\"><span>Client ID</span></th>\n";
-        print "            <th>Name</th>\n";
-        print "            <th>Mobile Number</th>\n";
-        print "            <th>Aadhar</th>\n";
-        print "            <th>SBI ACCNO</th>\n";
-        print "            <th>CIF NO</th>\n";
-        print "            <th>Date Of Birth</th>\n";
-        print "         </tr>";
-        if ($nrows > 0) {
-            while ($get_column=$res->fetch_assoc()) {
-                echo "<td>". $get_column['cid']."</td>";
-                echo "<td>". $get_column['cname']."</td>";
-                echo "<td>". $get_column['mno']."</td>";
-                echo "<td>". $get_column['uid']."</td>";
-                echo "<td>". $get_column['sbiaccno']."</td>";
-                echo "<td>". $get_column['cif']."</td>";
-                echo "<td>". date('d-m-Y', strtotime($get_column['dob'])). "</td>";
-                echo "</tr>";
-            }
-        }
-        echo "</table>
-            <br><br>
-          </form>";
-        mysqli_close($con);
-    }
+          //phpcode responsibele for displaying user info row in table
+          if (isset($_POST["cid"])) {
+              $cid = $_POST['cid'];
+              //echo "CID: ". $_POST['cid']. "<br />"; //Result Check
+              include("../connection.php");
+              $sql="SELECT * FROM tbl_clients WHERE cid = '".$cid."'";
+              $res=$con->query($sql);
+              $nrows=$res->num_rows;
+              echo "<br>";
+              echo "<form action = 'banking/index.php' method = 'POST' class='form-horizontal'>";
+              print "<table class=\"responstable\" style=\"margin: 0 auto;max-width: 1250px\">\n";
+              print "         <tr>\n";
+              print "            <th data-th=\"Order Details\"><span>Client ID</span></th>\n";
+              print "            <th>Name</th>\n";
+              print "            <th>Mobile Number</th>\n";
+              print "            <th>Aadhar</th>\n";
+              print "            <th>Date Of Birth</th>\n";
+              print "         </tr>";
+              if ($nrows > 0) {
+                  while ($get_column=$res->fetch_assoc()) {
+                      echo "<td>". $get_column['cid']."</td>";
+                      echo "<td>". $get_column['cname']."</td>";
+                      echo "<td>". $get_column['mno']."</td>";
+                      echo "<td>". $get_column['uid']."</td>";
+                      echo "<td>". date('d-m-Y', strtotime($get_column['dob'])). "</td>";
+                      echo "</tr>";
+                  }
+              }
+              echo "</table>
+                  <br><br>
+                </form>";
+              mysqli_close($con);
+          }
 
-    //phpcode responsibele for displaying tbl_cash row
-        include("../connection.php");
-        $sql="SELECT * FROM tbl_cash";
-        $res=$con->query($sql);
-        $nrows=$res->num_rows;
-        echo "<br>";
-        echo "<form action = 'banking/index.php' method = 'POST' class='form-horizontal'>";
-        print "<table class=\"responstable\">\n";
-        print "         <tr>\n";
-        print "            <th data-th=\"Order Details\"><span>Cash Balance</span></th>\n";
-        print "            <th><span><center>Account Balance</center></span></th>\n";
-        print "         </tr>";
-        if ($nrows > 0) {
-            while ($get_column=$res->fetch_assoc()) {
-                echo "<td>". $get_column['scih']."</td>";
-                echo "<td><center>". $get_column['scab']."</center></td>";
-                echo "</tr>";
-            }
-        }
-        echo "</table>
-            <br><br>
-          </form>";
-        mysqli_close($con);
+          //phpcode responsibele for displaying tbl_cash row
+              include("../connection.php");
+              $sql="SELECT * FROM tbl_cash";
+              $res=$con->query($sql);
+              $nrows=$res->num_rows;
+              echo "<br>";
+              echo "<form action = 'banking/index.php' method = 'POST' class='form-horizontal'>";
+              print "<table class=\"responstable\" style=\"margin: 0 auto;max-width: 650px\">\n";
+              print "         <tr>\n";
+              print "            <th data-th=\"Order Details\"><span>Cash Balance</span></th>\n";
+              print "            <th><span><center>Account Balance</center></span></th>\n";
+              print "         </tr>";
+              if ($nrows > 0) {
+                  while ($get_column=$res->fetch_assoc()) {
+                      echo "<td>". $get_column['scih']."</td>";
+                      echo "<td><center>". $get_column['scab']."</center></td>";
+                      echo "</tr>";
+                  }
+              }
+              echo "</table>
+                  <br><br>
+                </form>";
+              mysqli_close($con);
 
-    //phpcode responsibele for inserting into tbl_sbitrans
-    if (isset($_POST["type"])) {
-        $type = $_POST['type'];
-        $opn= $_POST['opn'];
-        $amt= $_POST['amt'];
-        $refno= $_POST['refno'];
-        //echo ": ". $_POST['birthday']. "<br />"; //Result Check
+          //phpcode responsibele for inserting into tbl_sbitrans
+          if (isset($_POST["type"])) {
+              $type = $_POST['type'];
+              $opn= $_POST['opn'];
+              $amt= $_POST['amt'];
+              $refno= $_POST['refno'];
+              //echo ": ". $_POST['birthday']. "<br />"; //Result Check
 
-        //DB Connectivity & Insert Query
-        include("../connection.php");
+              //DB Connectivity & Insert Query
+              include("../connection.php");
 
-        $sql = "INSERT INTO tbl_sbitrans ". "(cid, type, opn, amt, refno)". "VALUES('$cid','$type','$opn','$amt','$refno')";
+              $sql = "INSERT INTO tbl_sbitrans ". "(cid, type, opn, amt, refno)". "VALUES('$cid','$type','$opn','$amt','$refno')";
 
-        if ($con->query($sql) === true) {
-            //echo "New record created successfully"; echo "<br />";
-            echo "<div class='alert success'>
-                <span class='closebtn'>&times;</span>
-                <strong>Success!</strong> Client Created Successfully !!!
-                </div>";
-                if($opn=="Deposit")
-                {
-                    $sql = "UPDATE tbl_cash SET scih=scih+'$amt'";
-                    $con->query($sql);
+              if ($con->query($sql) === true) {
+                  //echo "New record created successfully"; echo "<br />";
+                  echo "<div class='alert success'>
+                      <span class='closebtn'>&times;</span>
+                      <strong>Success!</strong> Client Created Successfully !!!
+                      </div>";
+                  if ($opn=="Deposit") {
+                      $sql = "UPDATE tbl_cash SET scih=scih+'$amt'";
+                      $con->query($sql);
 
-                    $sql = "UPDATE tbl_cash SET scab=scab-'$amt'";
-                    $con->query($sql);
-                }
-                else
-                {
-                    $sql = "UPDATE tbl_cash SET scih=scih-'$amt'";
-                    $con->query($sql);
+                      $sql = "UPDATE tbl_cash SET scab=scab-'$amt'";
+                      $con->query($sql);
+                  } else {
+                      $sql = "UPDATE tbl_cash SET scih=scih-'$amt'";
+                      $con->query($sql);
 
-                    $sql = "UPDATE tbl_cash SET scab=scab+'$amt'";
-                    $con->query($sql);
-                }
-        } else {
-            echo "Error: " . $sql . "<br>" . $con->error;
-        }
-        $con->close();
-    }
+                      $sql = "UPDATE tbl_cash SET scab=scab+'$amt'";
+                      $con->query($sql);
+                  }
+              } else {
+                  echo "Error: " . $sql . "<br>" . $con->error;
+              }
+              $con->close();
+          }
         ?>
 
         <!-- You only need this form and the form-basic.css -->

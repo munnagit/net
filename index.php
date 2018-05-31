@@ -40,8 +40,6 @@ if (isset($_POST["name"])) {
     $mob= $_POST['mob'];
     $uid= $_POST['uid'];
     $adrs= $_POST['adrs'];
-    $sbiaccno= $_POST['sbiaccno'];
-    $cif= $_POST['cif'];
     $cty= $_POST['cty'];
     $email= $_POST['email'];
     $gndr= $_POST['gndr'];
@@ -52,7 +50,7 @@ if (isset($_POST["name"])) {
     //DB Connectivity & Insert Query
     include("connection.php");
 
-    $sql = "INSERT INTO tbl_clients ". "(cname, mno, address,sbiaccno, cif, city, email, gender, dob, dor)". "VALUES('$name','$mob','$adrs','$sbiaccno','$cif','$cty','$email','$gndr','$birthday','$dor')";
+    $sql = "INSERT INTO tbl_clients ". "(cname, mno, address, city, email, gender, dob, dor)". "VALUES('$name','$mob','$adrs', '$cty','$email','$gndr','$birthday','$dor')";
 
     if ($con->query($sql) === true) {
         //echo "New record created successfully"; echo "<br />";
@@ -114,20 +112,6 @@ if (isset($_POST["name"])) {
                     <span>Address</span>
                     <textarea name="adrs"></textarea>
                 </label>
-            </div>
-
-            <div class="form-row">
-                    <label>
-                        <span>SBI ACCNO</span>
-                        <input  maxlength="11" type="text" name="sbiaccno">
-                    </label>
-            </div>
-
-            <div class="form-row">
-                    <label>
-                        <span>CIF</span>
-                        <input maxlength="11" type="text" name="cif">
-                    </label>
             </div>
 
             <div class="form-row">

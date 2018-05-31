@@ -50,6 +50,51 @@
                 color: black;
             }
     </style>
+
+    <!-- Require JS for TextBox On focus out Calculation -->
+    <script>
+      function chkAdvance() {
+      var x = document.getElementById("sp");
+      var y = document.getElementById("cashpay");
+      var z = document.getElementById("adv");
+      var c = document.getElementById("cdt");
+      var p = document.getElementById("pft");
+      var cp = document.getElementById("cp");
+      var fo = document.getElementById("info");
+      if ( 0 < +y.value - +x.value )
+      {
+        z.value = +y.value - +x.value;
+        c.value = " ";
+      }
+      else {
+        c.value = Math.abs(+y.value - +x.value);
+        z.value = " ";
+      }
+
+      if ( 0 < x.value)
+      {
+        p.value = x.value - cp.value
+      }
+      else {
+        c.value = cp.value
+      }
+
+      fo.style.display = "block";
+     }
+
+     function cpValue()
+     {
+       var a = document.getElementById("adv");
+       var b = document.getElementById("tadv");
+       var c = document.getElementById("cdt");
+       var d = document.getElementById("tcdt");
+       var e = document.getElementById("pft");
+       var f = document.getElementById("tpft");
+       b.innerHTML = a.value;
+       d.innerHTML = c.value;
+       f.innerHTML = e.value;
+     }
+    </script>
  </head>
 
  <body>
@@ -86,8 +131,6 @@
           print "            <th><center>Name</center></th>\n";
           print "            <th>Mobile Number</th>\n";
           print "            <th>Aadhar</th>\n";
-          print "            <th>SBI ACCNO</th>\n";
-          print "            <th>CIF NO</th>\n";
           print "            <th>Date Of Birth</th>\n";
           print "         </tr>";
           if ($nrows > 0) {
@@ -96,8 +139,6 @@
                   echo "<td WIDTH='25%''>". $get_column['cname']."</td>";
                   echo "<td>". $get_column['mno']."</td>";
                   echo "<td>". $get_column['uid']."</td>";
-                  echo "<td>". $get_column['sbiaccno']."</td>";
-                  echo "<td>". $get_column['cif']."</td>";
                   echo "<td>". date('d-m-Y', strtotime($get_column['dob'])). "</td>";
                   echo "</tr>";
               }
@@ -108,7 +149,7 @@
           mysqli_close($con);
       }
 
-      //phpcode responsibele for displaying tbl_cash row
+      //phpcode responsibele for displaying credit advance row
           include("../connection.php");
           $sql="SELECT * FROM tbl_cash";
           $res=$con->query($sql);
@@ -190,42 +231,67 @@
             <div class="form-row">
                 <label>
                     <span>Selling Price</span>
-                    <input type="number" name="sp">
+                    <input type="number" name="sp" id="sp">
                 </label>
             </div>
 
             <div class="form-row">
                 <label>
-                    <span>Cost Price</span>
-                    <input type="number" name="cp">
+                    <span>Credit / Cost Price</span>
+                    <input type="number" name="cp" id="cp">
                 </label>
             </div>
 
             <div class="form-row">
                 <label>
-                    <span>Cash Payment</span>
-                    <input type="number" name="cashpay">
+                    <span>Advance / Cash Payment </span>
+                    <input type="number" name="cashpay" id="cashpay" onfocusout="chkAdvance(); cpValue();" />
                 </label>
             </div>
 
-            <div class="form-row">
+          <!--  <div class="form-row" style="display: none;"> -->
+            <div class="form-row" style="display: none;">
                     <label>
                         <span>Advance</span>
-                        <input type="number" name="adv">
+                        <input type="number" name="adv" id="adv" disabled>
                     </label>
             </div>
 
-            <div class="form-row">
+            <div class="form-row" style="display: none;">
                     <label>
                         <span>Credit</span>
-                        <input type="number" name="cdt">
+                        <input type="number" name="cdt" id="cdt" disabled>
                     </label>
             </div>
 
-            <div class="form-row">
-                <input type='hidden' name='cid' value='<?php echo "$cid";?>'/>
-                <button type="submit">Enter</button>
+            <div class="form-row" style="display: none;">
+                    <label>
+                        <span>Profit</span>
+                        <input type="number" name="pft" id="pft" disabled>
+                    </label>
             </div>
+
+            <div class="form-row" id="info" style="display: none;">
+            <table class="responstable" style="margin: 0 auto;max-width: 650px; border: 0px;">
+              <tbody>
+                <tr>
+                  <th data-th="Credit Details" style="background-color: #6f7479"><span>Adv</span></th>
+                  <th style="background-color: #6f7479"><span><center>Cdt</center></span></th>
+                  <th style="background-color: #6f7479"><span><center>Nav</center></span></th>
+                </tr>
+                <tr>
+                  <td style="color :blue" ><center><p id="tadv"></p></center></td>
+                  <td style="color :red"><center><p id="tcdt"></p></center></td>
+                  <td style="color :green"><center><p id="tpft"></td></center></td>
+                </tr>
+              </tbody>
+          </table>
+        </div>
+
+         <div class="form-row">
+             <input type='hidden' name='cid' value='<?php echo "$cid";?>'/>
+             <button type="submit">Enter</button>
+         </div>
 
         </form>
 

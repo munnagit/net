@@ -66,7 +66,7 @@
              $mno = $_POST['search'];
              //echo "Mno: ". $_POST['search']. "<br />"; //Result Check
              include("connection.php");
-             $sql="SELECT * FROM tbl_clients WHERE mno = '".$mno."'";
+             $sql="SELECT * FROM tbl_clients WHERE mno like '".$mno."%'";
              $res=$con->query($sql);
              $nrows=$res->num_rows;
              echo "<br><br><br>";
@@ -79,15 +79,13 @@
             }
 
              echo "<form action = 'banking/index.php' method = 'POST' class='form-horizontal'>";
-             print "<table class=\"responstable\">\n";
+             print "<table class=\"responstable\" style=\"margin: 0 auto;max-width: 1250px\">\n";
              print "         <tr>\n";
              print "            <th><span>Select</span></th>\n";
              print "            <th data-th=\"Order Details\"><span>Client ID</span></th>\n";
              print "            <th>Name</th>\n";
              print "            <th>Mobile Number</th>\n";
              print "            <th>Aadhar</th>\n";
-             print "            <th>SBI ACCNO</th>\n";
-             print "            <th>CIF NO</th>\n";
              print "            <th>Date Of Birth</th>\n";
              print "         </tr>";
              if ($nrows > 0) {
@@ -98,8 +96,6 @@
                      echo "<td>". $get_column['cname']."</td>";
                      echo "<td>". $get_column['mno']."</td>";
                      echo "<td>". $get_column['uid']."</td>";
-                     echo "<td>". $get_column['sbiaccno']."</td>";
-                     echo "<td>". $get_column['cif']."</td>";
                      echo "<td>". date('d-m-Y', strtotime($get_column['dob'])). "</td>";
                      echo "</tr>";
                  }
@@ -118,8 +114,6 @@
                          echo "<td>". $get_column['cname']."</td>";
                          echo "<td>". $get_column['mno']."</td>";
                          echo "<td>". $get_column['uid']."</td>";
-                         echo "<td>". $get_column['sbiaccno']."</td>";
-                         echo "<td>". $get_column['cif']."</td>";
                          echo "<td>". date('d-m-Y', strtotime($get_column['dob'])). "</td>";
                          echo "</tr>";
                      }
@@ -144,10 +138,6 @@
              mysqli_close($con);
          }
         ?>
-        <?php
-        ?>
-
-
 
   </div>
 
