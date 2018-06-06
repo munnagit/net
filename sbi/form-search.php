@@ -45,7 +45,6 @@
 
     <ul>
         <li><a href="index.php">New Client</a></li>
-        <li><a href="./banking/personal.php">Self Banking</a></li>
         <li><a href="form-search.html" class="active">Search</a></li>
     </ul>
 
@@ -86,6 +85,10 @@
              print "            <th>Name</th>\n";
              print "            <th>CIF No.</th>\n";
              print "            <th>Acc No.</th>\n";
+             print "            <th>Gender</th>\n";
+             print "            <th>Village</th>\n";
+             print "            <th>Type</th>\n";
+             print "            <th>OAP</th>\n";
              print "         </tr>";
              if ($nrows > 0) {
                  while ($get_column=$res->fetch_assoc()) {
@@ -95,6 +98,10 @@
                      echo "<td>". $get_column['name']."</td>";
                      echo "<td>". $get_column['cifno']."</td>";
                      echo "<td>". $get_column['accno']."</td>";
+                     echo "<td>". $get_column['gender']."</td>";
+                     echo "<td>". $get_column['village']."</td>";
+                     echo "<td>". $get_column['acctype']."</td>";
+                     echo "<td>". $get_column['oap']."</td>";
                      echo "</tr>";
                  }
              }
@@ -112,6 +119,10 @@
                          echo "<td>". $get_column['name']."</td>";
                          echo "<td>". $get_column['cifno']."</td>";
                          echo "<td>". $get_column['accno']."</td>";
+                         echo "<td>". $get_column['gender']."</td>";
+                         echo "<td>". $get_column['village']."</td>";
+                         echo "<td>". $get_column['acctype']."</td>";
+                         echo "<td>". $get_column['oap']."</td>";
                          echo "</tr>";
                      }
                  }

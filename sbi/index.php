@@ -135,9 +135,17 @@
 							<div class="form-row">
 									<label>
 											<span>Village</span>
-											<select name="village" style="padding-right: 163px;">
+											<select name="village" style="padding-right: 16px;">
 													<option value="Cheyur">Cheyur</option>
-													<option value="Ramiyampalayam">Ramiyampalayam</option>
+													<option value="Muriyandam Palayam">Muriyandam Palayam</option>
+													<option value="Thandukaran Palayam">Thandukaran Palayam</option>
+													<option value="Kanur">Kanur</option>
+													<option value="Chellappan Palayam">Chellappan Palayam</option>
+													<option value="Otchampalayam">Otchampalayam</option>
+													<option value="Papankulam">Papankulam</option>
+													<option value="Pothampalayam">Pothampalayam</option>
+													<option value="Thathanoor">Thathanoor</option>
+													<option value="Periyakattup Palayam">Periyakattup Palayam</option>
 											</select>
 									</label>
 							</div>
