@@ -53,12 +53,15 @@
 
     <!-- Require for Autosubmit form to recalculate Casbalance table -->
     <script>
-    function submitform()
-      {
-        document.getElementById("myform").submit();
-      }
-    </script>
+       function submitForm()
+       {
+         document.getElementById("myForm").submit();
+       }
+     </script>
+
  </head>
+
+
 
  <body>
     <header>
@@ -73,13 +76,16 @@
         <li><a href="../form-search.php">Search</a></li>
     </ul>
 
-
    <div class="main-content">
 
     <?php
-          //phpcode responsibele for displaying user info row in table
-          if (isset($_POST["cid"])) {
-              $cid = $_POST['cid'];
+          if (isset($_REQUEST["cid"])) {
+              $cid = $_REQUEST["cid"];
+
+              echo "<form action=\"#\" method=\"post\" id=\"myForm\">
+                <input type=\"hidden\" name=\"cid\" value=\"$cid\" />
+              </form>";
+              //phpcode responsibele for displaying user info row in table
               //echo "CID: ". $_POST['cid']. "<br />"; //Result Check
               include("../connection.php");
               $sql="SELECT * FROM tbl_sbiclients WHERE cid = '".$cid."'";
@@ -122,7 +128,7 @@
               $sql="SELECT * FROM tbl_cash";
               $res=$con->query($sql);
               $nrows=$res->num_rows;
-              echo "<br>";
+              echo "<div id='cashform'><br>";
               echo "<form action = 'banking/index.php' method = 'POST' class='form-horizontal'>";
               print "<table class=\"responstable\" style=\"margin: 0 auto;max-width: 650px\">\n";
               print "         <tr>\n";
@@ -138,7 +144,7 @@
               }
               echo "</table>
                   <br><br>
-                </form>";
+                </form></div>";
               mysqli_close($con);
 
           //phpcode responsibele for inserting into tbl_sbitrans
@@ -155,10 +161,10 @@
               $sql = "INSERT INTO tbl_sbitrans ". "(cid, oap, opn, amt, refno)". "VALUES('$cid','$oap','$opn','$amt','$refno')";
               if ($con->query($sql) === true) {
                   //echo "New record created successfully"; echo "<br />";
-                  echo "<div onclick=\"submitform()\" class='alert success'>
+                  /*echo "<div onclick=\"submitform()\" class='alert success'>
                       <span class='closebtn'>&times;</span>
                       <strong>Success!</strong> Transaction Entered Successfully !!!
-                      </div>";
+                      </div>";*/
                   if ($opn=="Deposit") {
                       $sql = "UPDATE tbl_cash SET scih=scih+'$amt'";
                       $con->query($sql);
@@ -172,19 +178,18 @@
                       $sql = "UPDATE tbl_cash SET scab=scab+'$amt'";
                       $con->query($sql);
                   }
-                  echo "<form action=\"#\" method='post' id='myform'>
-                          <input type=\"hidden\" name=\"cid\" value=\"$cid\" />
-                        </form>";
               } else {
                   echo "Error: " . $sql . "<br>" . $con->error;
               }
+              //echo "<meta http-equiv='refresh' content='0'>";
+              header("#");
               $con->close();
           }
         ?>
 
         <!-- You only need this form and the form-basic.css -->
 
-        <form action = "<?php $_PHP_SELF ?>" method = "POST" class="form-basic" method="post" action="#">
+        <form action = "<?php $_PHP_SELF ?>" method = "POST" class="form-basic" method="post" onsubmit="myFunction()">
 
             <div class="form-title-row">
                 <h1>Transaction Entry</h1>
@@ -226,7 +231,7 @@
 
             <div class="form-row">
                 <input type='hidden' name='cid' value='<?php echo "$cid";?>'/>
-                <button type="submit">Enter</button>
+                <button type="submit" >Enter</button>
             </div>
 
         </form>
