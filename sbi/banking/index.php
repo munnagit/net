@@ -51,14 +51,6 @@
             }
     </style>
 
-    <!-- Require for Autosubmit form to recalculate Casbalance table -->
-    <script>
-       function submitForm()
-       {
-         document.getElementById("myForm").submit();
-       }
-     </script>
-
  </head>
 
 
@@ -181,8 +173,7 @@
               } else {
                   echo "Error: " . $sql . "<br>" . $con->error;
               }
-              //echo "<meta http-equiv='refresh' content='0'>";
-              header("#");
+              header("Location:?cid=$cid");
               $con->close();
           }
         ?>

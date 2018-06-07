@@ -45,6 +45,7 @@
 
     <ul>
         <li><a href="index.php">New Client</a></li>
+        <li><a href="./banking/personal.php">Self Banking</a></li>
         <li><a href="form-search.html" class="active">Search</a></li>
     </ul>
 

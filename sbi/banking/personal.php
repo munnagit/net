@@ -44,7 +44,7 @@
         $nrows=$res->num_rows;
         echo "<br>";
         echo "<form action = 'banking/index.php' method = 'POST' class='form-horizontal'>";
-        print "<table class=\"responstable\">\n";
+        print "<table class=\"responstable\" style = \" margin: 0 auto;max-width: 650px  \">\n";
         print "         <tr>\n";
         print "            <th data-th=\"Order Details\"><span>Cash Balance</span></th>\n";
         print "            <th><span><center>Account Balance</center></span></th>\n";
@@ -67,12 +67,12 @@
         $amt= $_POST['amt'];
         $cmt= $_POST['cmt'];
         //echo ": ". $_POST['opn']. "<br />"; //Result Check
-          
+
         //DB Connectivity & Insert Query
         include("../connection.php");
-            
+
         $sql = "INSERT INTO tbl_selftrans ". "(opn, amt, cmt)". "VALUES('$opn','$amt','$cmt')";
-                 
+
         if ($con->query($sql) === true) {
             //echo "New record created successfully"; echo "<br />";
             echo "<div class='alert success'>
@@ -100,7 +100,7 @@
         }
         $con->close();
     }
-        ?> 
+        ?>
 
         <!-- You only need this form and the form-basic.css -->
 
@@ -134,7 +134,7 @@
                     </label>
             </div>
 
-            <div class="form-row"> 
+            <div class="form-row">
                 <button type="submit">Enter</button>
             </div>
 
