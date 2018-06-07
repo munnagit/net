@@ -173,14 +173,14 @@
               } else {
                   echo "Error: " . $sql . "<br>" . $con->error;
               }
-              header("Location:?cid=$cid");
+              echo "<meta http-equiv=\"refresh\" content=\"0;?cid=$cid \" >";
               $con->close();
           }
         ?>
 
         <!-- You only need this form and the form-basic.css -->
 
-        <form action = "<?php $_PHP_SELF ?>" method = "POST" class="form-basic" method="post" onsubmit="myFunction()">
+        <form action = "<?php $_PHP_SELF ?>" method = "POST" class="form-basic" method="post">
 
             <div class="form-title-row">
                 <h1>Transaction Entry</h1>
