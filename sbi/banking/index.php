@@ -50,6 +50,14 @@
                 color: black;
             }
     </style>
+
+    <!-- Require for Autosubmit form to recalculate Casbalance table -->
+    <script>
+    function submitform()
+      {
+        document.getElementById("myform").submit();
+      }
+    </script>
  </head>
 
  <body>
@@ -134,8 +142,8 @@
               mysqli_close($con);
 
           //phpcode responsibele for inserting into tbl_sbitrans
-          if (isset($_POST["type"])) {
-              $type = $_POST['type'];
+          if (isset($_POST["oap"])) {
+              $oap = $_POST['oap'];
               $opn= $_POST['opn'];
               $amt= $_POST['amt'];
               $refno= $_POST['refno'];
@@ -144,13 +152,12 @@
               //DB Connectivity & Insert Query
               include("../connection.php");
 
-              $sql = "INSERT INTO tbl_sbitrans ". "(cid, type, opn, amt, refno)". "VALUES('$cid','$type','$opn','$amt','$refno')";
-
+              $sql = "INSERT INTO tbl_sbitrans ". "(cid, oap, opn, amt, refno)". "VALUES('$cid','$oap','$opn','$amt','$refno')";
               if ($con->query($sql) === true) {
                   //echo "New record created successfully"; echo "<br />";
-                  echo "<div class='alert success'>
+                  echo "<div onclick=\"submitform()\" class='alert success'>
                       <span class='closebtn'>&times;</span>
-                      <strong>Success!</strong> Client Created Successfully !!!
+                      <strong>Success!</strong> Transaction Entered Successfully !!!
                       </div>";
                   if ($opn=="Deposit") {
                       $sql = "UPDATE tbl_cash SET scih=scih+'$amt'";
@@ -165,6 +172,9 @@
                       $sql = "UPDATE tbl_cash SET scab=scab+'$amt'";
                       $con->query($sql);
                   }
+                  echo "<form action=\"#\" method='post' id='myform'>
+                          <input type=\"hidden\" name=\"cid\" value=\"$cid\" />
+                        </form>";
               } else {
                   echo "Error: " . $sql . "<br>" . $con->error;
               }
@@ -183,7 +193,7 @@
             <div class="form-row">
                 <label>
                     <span>OAP</span>
-                    <select name="type" style="padding-right: 175px;">
+                    <select name="oap" style="padding-right: 175px;">
                         <option value="No">No</option>
                         <option value="Yes">Yes</option>
                     </select>
