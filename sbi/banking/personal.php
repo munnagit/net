@@ -98,6 +98,7 @@
         } else {
             echo "Error: " . $sql . "<br>" . $con->error;
         }
+        echo "<meta http-equiv=\"refresh\" content=\"0\" >";
         $con->close();
     }
         ?>
