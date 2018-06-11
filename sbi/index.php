@@ -56,6 +56,7 @@
 	    $name = $_POST['name'];
 	    $cifno= $_POST['cifno'];
 	    $accno= $_POST['accno'];
+			$accno= $_POST['aadhar'];
 	    $gender= $_POST['gender'];
 	    $village= $_POST['village'];
 	    $acctype= $_POST['acctype'];
@@ -78,11 +79,8 @@
 	    }
 	    $con->close();
 	}
+	include("headrow.php");
 	?>
-	    <header>
-	        <center><h1>NetTech New Customer</h1></center>
-	        <!-- <a href="http://tutorialzine.com/2015/07/freebie-7-clean-and-responsive-forms/">Download</a> -->
-	    </header>
 
 	    <ul>
 	        <li><a href="index.html" class="active">New Client</a></li>
@@ -123,9 +121,16 @@
 	            </div>
 
 							<div class="form-row">
+	                <label>
+	                    <span>Aadhar</span>
+	                    <input maxlength="12" type="text" name="aadhar">
+	                </label>
+	            </div>
+
+							<div class="form-row">
 									<label>
 											<span>Gender</span>
-											<select name="gender" style="padding-right: 163px;">
+											<select name="gender">
 													<option value="M">Male</option>
 													<option value="F">Female</option>
 											</select>

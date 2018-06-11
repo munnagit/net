@@ -39,9 +39,10 @@
  </head>
 
  <body>
-  <header>
-		<h1>NetTech SBI Automation</h1>
-  </header>
+   <?php
+       //phpcode responsibele for displaying tbl_cash row
+       include("headrow.php");
+    ?>
 
     <ul>
         <li><a href="index.php">New Client</a></li>
@@ -83,9 +84,10 @@
              print "         <tr>\n";
              print "            <th><span>Select</span></th>\n";
              print "            <th data-th=\"Order Details\"><span>Client ID</span></th>\n";
-             print "            <th>Name</th>\n";
-             print "            <th>CIF No.</th>\n";
-             print "            <th>Acc No.</th>\n";
+             print "            <th><center>Name</center></th>\n";
+             print "            <th><center>CIF</center></th>\n";
+             print "            <th><center>Account</center></th>\n";
+             print "            <th><center>Aadhar</center></th>\n";
              print "            <th>Gender</th>\n";
              print "            <th>Village</th>\n";
              print "            <th>Type</th>\n";
@@ -99,6 +101,7 @@
                      echo "<td>". $get_column['name']."</td>";
                      echo "<td>". $get_column['cifno']."</td>";
                      echo "<td>". $get_column['accno']."</td>";
+                     echo "<td>". $get_column['aadhar']."</td>";
                      echo "<td>". $get_column['gender']."</td>";
                      echo "<td>". $get_column['village']."</td>";
                      echo "<td>". $get_column['acctype']."</td>";
@@ -129,10 +132,10 @@
                  }
              }
              echo "</table>
-            <br><br><br><br><br>
+            <br>
             <div style='width:100&#37;;'>
 
-              <div id='float1' style='width:51%;float:left;padding: 12px'>
+              <div id='float1' style='width:53%;float:left;padding: 12px'>
               <button style='float:right' type='submit' name='banking' value='banking'>Banking</button>
               </div>
             </div>
