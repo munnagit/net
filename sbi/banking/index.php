@@ -63,6 +63,7 @@
         <li><a href="index.php" class="active">Customer Banking</a></li>
         <li><a href="personal.php">Self Banking</a></li>
         <li><a href="../form-search.php">Search</a></li>
+        <li><a href="../trans.php">Transactions</a></li>
     </ul>
 
    <div class="main-content">

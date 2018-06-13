@@ -10,6 +10,11 @@ include("sessions.php");
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
+	<!-- Below two scripts are for alert bar with close button -->
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
 	<title>NetTech</title>
 
 	<link rel="stylesheet" href="assets/demo.css">
@@ -85,10 +90,14 @@ include("sessions.php");
 
 	    if ($con->query($sql) === true) {
 	        //echo "New record created successfully"; echo "<br />";
-	        echo "<div class='alert success' style='background-color: #49ce49';>
-	        <span class='closebtn'>&times;</span>
-	        <center><strong>Success!</strong> Client Created Successfully !!! <center>
+	        echo "<div class=\"container\">
+					<div class=\"alert alert-success alert-dismissible\">
+    			<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>
+    			<strong>Success!</strong> Client Data Updated Successfully !!
+  				</div>
+					<meta http-equiv=\"refresh\" content=\"0;url=form-search.php \" >
 	        </div>";
+
 	    } else {
 	        echo "Error: " . $sql . "<br>" . $con->error;
 	    }
@@ -101,6 +110,7 @@ include("sessions.php");
 	        <li><a href="index.html" class="active">New Client</a></li>
 	        <li><a href="./banking/personal.php">Self Banking</a></li>
 	        <li><a href="form-search.php">Search</a></li>
+					<li><a href="trans.php">Transactions</a></li>
 	    </ul>
 
 
