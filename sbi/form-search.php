@@ -137,8 +137,12 @@
             <br>
             <div style='width:100&#37;;'>
 
-              <div id='float1' style='width:53%;float:left;padding: 12px'>
+              <div id='float1' style='width:50%;float:left;padding: 12px'>
               <button style='float:right' type='submit' name='banking' value='banking'>Banking</button>
+              </div>
+
+              <div id='float2' style='width:50%;float:left;padding: 12px'>
+              <button type='submit' name='edit' value='edit' formaction='index.php'>Edit</button>
               </div>
             </div>
 

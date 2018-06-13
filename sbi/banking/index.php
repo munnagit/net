@@ -57,7 +57,7 @@
 
 
  <body>
-      <?php 	include("../sessions.php"); include("../headrow.php"); ?>
+      <?php include("../headrow.php"); ?>
     <ul>
         <li><a href="../index.php">New Client</a></li>
         <li><a href="index.php" class="active">Customer Banking</a></li>

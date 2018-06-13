@@ -55,12 +55,11 @@ include("sessions.php");
 
 <body>
 	<?php
-	include("sessions.php");
 	if (isset($_POST["name"])) {
 	    $name = $_POST['name'];
 	    $cifno= $_POST['cifno'];
 	    $accno= $_POST['accno'];
-			$accno= $_POST['aadhar'];
+			$aadhar= $_POST['aadhar'];
 	    $gender= $_POST['gender'];
 	    $village= $_POST['village'];
 	    $acctype= $_POST['acctype'];
@@ -70,7 +69,19 @@ include("sessions.php");
 	    //DB Connectivity & Insert Query
 	    include("connection.php");
 
-	    $sql = "INSERT INTO tbl_sbiclients ". "(name, cifno, accno, gender, village, acctype, oap)". "VALUES('$name','$cifno','$accno', '$gender','$village','$acctype','$oap')";
+			if (isset($_POST["cid"]))
+			{
+				$cid = $_POST["cid"];
+				if(empty($cid)){
+				$sql = "INSERT INTO tbl_sbiclients ". "(name, cifno, accno, aadhar, gender, village, acctype, oap)". "VALUES('$name','$cifno','$accno', '$aadhar', '$gender','$village','$acctype','$oap')";
+			}
+			else {
+				//echo $cid;
+				//$sql = "UPDATE tbl_sbiclients set ". "(name, cifno, accno, gender, village, acctype, oap)". "VALUES('$name','$cifno','$accno', '$gender','$village','$acctype','$oap')";
+ 			  $sql = "UPDATE tbl_sbiclients set name = '$name', cifno = $cifno, accno = $accno, aadhar = $aadhar, gender = '$gender', village = '$village', acctype = '$acctype', oap = '$oap' where cid = $cid";
+			}
+		}
+
 
 	    if ($con->query($sql) === true) {
 	        //echo "New record created successfully"; echo "<br />";
@@ -98,6 +109,18 @@ include("sessions.php");
 	        <!-- You only need this form and the form-basic.css -->
 
 	        <form action = "<?php $_PHP_SELF ?>" method = "POST" class="form-basic" method="post" action="#">
+              <?php
+							if (isset($_POST["cid"]))
+							{
+								$cid = $_POST['cid'];
+								//echo $cid;
+								include("connection.php");
+								$sql="SELECT * FROM tbl_sbiclients WHERE cid = '".$cid."'";
+								$res=$con->query($sql);
+								$nrows=$res->num_rows;
+								$get_column=$res->fetch_assoc();
+							}
+							?>
 
 	            <div class="form-title-row">
 	                <h1>SBI-Client Bio Enrollment</h1>
@@ -106,28 +129,28 @@ include("sessions.php");
 	            <div class="form-row">
 	                <label>
 	                    <span>Name</span>
-	                    <input type="text" name="name" required>
+	                    <input type="text" name="name" value="<?php echo $get_column['name'] ?>" required>
 	                </label>
 	            </div>
 
 	            <div class="form-row">
 	                <label>
 	                    <span>CIF No</span>
-	                    <input maxlength="11" type="text" name="cifno">
+	                    <input maxlength="11" type="text" name="cifno" value="<?php echo $get_column['cifno'] ?>">
 	                </label>
 	            </div>
 
 	            <div class="form-row">
 	                <label>
 	                    <span>Acc No</span>
-	                    <input maxlength="16" type="text" name="accno">
+	                    <input maxlength="16" type="text" name="accno" value="<?php echo $get_column['accno'] ?>">
 	                </label>
 	            </div>
 
 							<div class="form-row">
 	                <label>
 	                    <span>Aadhar</span>
-	                    <input maxlength="12" type="text" name="aadhar">
+	                    <input maxlength="12" type="text" name="aadhar" value="<?php echo $get_column['aadhar']  ?>">
 	                </label>
 	            </div>
 
@@ -135,8 +158,9 @@ include("sessions.php");
 									<label>
 											<span>Gender</span>
 											<select name="gender">
-													<option value="M">Male</option>
-													<option value="F">Female</option>
+												  <option value="<?php if (isset($_POST['cid'])) { echo $get_column['gender']; }  ?>"> <?php if (isset($_POST['cid'])) { echo $get_column['gender']; }  ?> </option>
+													<option value="M">M</option>
+													<option value="F">F</option>
 											</select>
 									</label>
 							</div>
@@ -145,6 +169,7 @@ include("sessions.php");
 									<label>
 											<span>Village</span>
 											<select name="village" style="padding-right: 16px;">
+													<option value="<?php if (isset($_POST['cid'])) { echo $get_column['village']; }  ?>"> <?php if (isset($_POST['cid'])) { echo $get_column['village']; }  ?> </option>
 													<option value="Cheyur">Cheyur</option>
 													<option value="Muriyandam Palayam">Muriyandam Palayam</option>
 													<option value="Thandukaran Palayam">Thandukaran Palayam</option>
@@ -163,6 +188,7 @@ include("sessions.php");
 									<label>
 											<span>Account Type</span>
 											<select name="acctype" style="padding-right: 163px;">
+												  <option value="<?php if (isset($_POST['cid'])) { echo $get_column['acctype']; }  ?>"> <?php if (isset($_POST['cid'])) { echo $get_column['acctype']; }  ?> </option>
 													<option value="SB-G">SB-G</option>
 													<option value="SB-T">SB-T</option>
 											</select>
@@ -174,14 +200,16 @@ include("sessions.php");
 									<label>
 											<span>OAP</span>
 											<select name="oap" style="padding-right: 163px;">
-													<option value="No">Yes</option>
-													<option value="Yes">No</option>
+												  <option value="<?php if (isset($_POST['cid'])) { echo $get_column['oap']; }  ?>"> <?php if (isset($_POST['cid'])) { echo $get_column['oap']; }  ?> </option>
+													<option value="No">No</option>
+													<option value="Yes">Yes</option>
 											</select>
 									</label>
 							</div>
 
 	                <div class="form-row" style="display: inline">
 										<center>
+											<input type=hidden name=cid value="<?php if (isset($_POST["cid"])) { echo $cid; } ?>" />
 	                <button type="submit" id='float1' style="margin: 30px 10px; display: inline; width: 25%; margin-left: 80px;">Submit</button>
 									<button type="reset" id='float1' style="margin: 20px; display: inline; width: 25%">Reset</button>
 								</center>
