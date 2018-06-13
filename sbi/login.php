@@ -9,7 +9,7 @@
       $mypassword = mysqli_real_escape_string($con,$_POST['password']);
 
       $sql = "SELECT id FROM tbl_logins WHERE userName = '$myusername' and pass = '$mypassword'";
-      echo $sql;
+      //echo $sql;
       $result = mysqli_query($con,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
       //$active = $row['active'];
