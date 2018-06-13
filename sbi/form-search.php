@@ -124,6 +124,7 @@
                          echo "<td>". $get_column['name']."</td>";
                          echo "<td>". $get_column['cifno']."</td>";
                          echo "<td>". $get_column['accno']."</td>";
+                         echo "<td>". $get_column['aadhar']."</td>";
                          echo "<td>". $get_column['gender']."</td>";
                          echo "<td>". $get_column['village']."</td>";
                          echo "<td>". $get_column['acctype']."</td>";
