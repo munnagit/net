@@ -13,8 +13,8 @@ If you like this solution, you might also want to check out the 1.0 version:
   overflow: hidden;
   background: #FFF;
   color: #024457;
-  border-radius: 10px;
-  border: 1px solid #428bca;
+  /* border-radius: 10px;
+  border: 1px solid #428bca; */
 }
 .responstable tr {
   border: 1px solid #D9E4E6;
@@ -24,9 +24,9 @@ If you like this solution, you might also want to check out the 1.0 version:
 }
 .responstable th {
   display: none;
-  border: 1px solid #FFF;
-  background-color: #428bca;
-  color: #FFF;
+  /* border: 1px solid #FFF; */
+  background-color: #87ceeb;
+  /* color: #FFF; */
   padding: 1em;
 }
 .responstable th:first-child {

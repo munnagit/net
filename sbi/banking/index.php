@@ -80,7 +80,7 @@
               $res=$con->query($sql);
               $nrows=$res->num_rows;
               echo "<form action = 'banking/index.php' method = 'POST' class='form-horizontal'>";
-              print "<table class=\"responstable\" style=\"margin: 0 auto;max-width: 1250px\">\n";
+              print "<table class=\"responstable\" style=\"margin: 0 auto;\">\n";
               print "         <tr>\n";
               print "            <th data-th=\"Order Details\"><span>Client ID</span></th>\n";
               print "            <th><center>Name</center></th>\n";
@@ -182,14 +182,14 @@
             <div class="form-row">
                 <label>
                     <span>Amount</span>
-                    <input type="text" name="amt">
+                    <input type="text" name="amt" required>
                 </label>
             </div>
 
             <div class="form-row">
                     <label>
                         <span>Refrence Number</span>
-                        <input type="text" name="refno">
+                        <input type="text" name="refno" required>
                     </label>
             </div>
 
