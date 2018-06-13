@@ -22,7 +22,7 @@
          //session_register("myusername");
          $_SESSION['login_user'] = $myusername;
 
-         header("location: form-search.php");
+         echo "<meta http-equiv=\"refresh\" content=\"0;url=/sbi/form-search.php \" >";
       }else {
          $error = "Your Login Name or Password is invalid";
       }
