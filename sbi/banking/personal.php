@@ -22,7 +22,7 @@
  </head>
 
  <body>
-    <?php 	include("../headrow.php"); ?>
+    <?php 	include("../headrow.php");include("../sessions.php"); ?>
 
     <ul>
         <li><a href="../index.php">New Client</a></li>

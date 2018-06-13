@@ -52,6 +52,7 @@
 
 <body>
 	<?php
+	include("sessions.php");
 	if (isset($_POST["name"])) {
 	    $name = $_POST['name'];
 	    $cifno= $_POST['cifno'];

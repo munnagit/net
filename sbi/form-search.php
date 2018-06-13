@@ -41,6 +41,7 @@
  <body>
    <?php
        //phpcode responsibele for displaying tbl_cash row
+       include("sessions.php");
        include("headrow.php");
     ?>
 

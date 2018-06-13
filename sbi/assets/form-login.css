@@ -96,7 +96,7 @@ html{
     background-color: #d6f0c3;
 }
 
-.form-log-in-with-email:after{
+/* .form-log-in-with-email:after{
     content: 'OR';
     position: absolute;
     bottom: 260px;
@@ -109,7 +109,7 @@ html{
     color: #93923b;
     font-size: 17px;
     line-height: 50px;
-}
+} */
 
 .form-sign-in-with-social{
     display: inline-block;
