@@ -1,3 +1,6 @@
+<?php
+include("sessions.php");
+?>
 <!DOCTYPE html>
 <html>
 
@@ -22,7 +25,7 @@
  </head>
 
  <body>
-    <?php 	include("../headrow.php");include("../sessions.php"); ?>
+    <?php 	include("../headrow.php"); ?>
 
     <ul>
         <li><a href="../index.php">New Client</a></li>
