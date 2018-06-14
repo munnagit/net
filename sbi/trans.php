@@ -8,7 +8,6 @@
 	 <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1">
 
- 	 <title>Client Search</title>
 
 	 <link rel="stylesheet" href="assets/demo.css">
 	 <link rel="stylesheet" href="assets/form-search.css">
@@ -54,15 +53,6 @@
 
 
     <div class="main-content">
-        <!-- You only need this form and the form-search.css -->
-
-        <form action = "<?php $_PHP_SELF ?>" method = "POST" class="form-search" method="post" action="#">
-            <input type="search" name="search" placeholder="Name or CIF or ACC...">
-            <button type="submit">Search</button>
-            <i class="fa fa-search"></i>
-        </form>
-
-
         <!-- phpcode responsible for find and list client details row matching phone no -->
         <?php
 
