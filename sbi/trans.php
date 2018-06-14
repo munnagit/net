@@ -63,16 +63,6 @@
              $res=$con->query($sql);
              $nrows=$res->num_rows;
              echo "<br><br><br>";
-
-             if ($con->query($sql) === true) {
-                 //echo "New record created successfully"; echo "<br />";
-                 /*echo "<div onclick=\"submitform()\" class='alert success'>
-                     <span class='closebtn'>&times;</span>
-                     <strong>Success!</strong> Transaction Entered Successfully !!!
-                     </div>";*/
-             } else {
-                 echo "Error: " . $sql . "<br>" . $con->error;
-             }
              //echo "<form action = 'banking/index.php' method = 'POST' class='form-horizontal'>";
              print "<table class=\"responstable\" style=\"margin: 0 auto;max-width: 1250px\">\n";
              print "         <tr>\n";
