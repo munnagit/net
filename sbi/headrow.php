@@ -10,7 +10,7 @@
     $nrows=$res->num_rows;
     if ($nrows > 0) {
       while ($get_column=$res->fetch_assoc()) {
-         echo '<header>';
+         echo '<header onclick="javascript:location.href=\'ebal.php \'">';
          echo '<div class="w3-row">';
          echo '<div class="w3-col w3-black w3-container" style="width:20%"><p><center>Cash Balance</center></p></div>';
          echo '<div class="w3-col w3-black w3-container" style="width:60%"><p><h1>NetTech SBI Automation<h1></p></div>';
