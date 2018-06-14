@@ -160,7 +160,7 @@ include("sessions.php");
 							<div class="form-row">
 	                <label>
 	                    <span>Aadhar</span>
-	                    <input maxlength="12" type="text" name="aadhar" value="<?php echo $get_column['aadhar']  ?>">
+	                    <input maxlength="12" type="text" name="aadhar" value="<?php echo $get_column['aadhar']  ?>" required />
 	                </label>
 	            </div>
 
