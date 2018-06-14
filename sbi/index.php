@@ -139,21 +139,21 @@ include("sessions.php");
 	            <div class="form-row">
 	                <label>
 	                    <span>Name</span>
-	                    <input type="text" name="name" value="<?php echo $get_column['name'] ?>" required>
+	                    <input type="text" name="name" value="<?php echo $get_column['name'] ?>" required />
 	                </label>
 	            </div>
 
 	            <div class="form-row">
 	                <label>
 	                    <span>CIF No</span>
-	                    <input maxlength="11" type="text" name="cifno" value="<?php echo $get_column['cifno'] ?>">
+	                    <input maxlength="11" type="text" name="cifno" value="<?php echo $get_column['cifno'] ?>" required />
 	                </label>
 	            </div>
 
 	            <div class="form-row">
 	                <label>
 	                    <span>Acc No</span>
-	                    <input maxlength="16" type="text" name="accno" value="<?php echo $get_column['accno'] ?>">
+	                    <input maxlength="16" type="text" name="accno" value="<?php echo $get_column['accno'] ?>" required />
 	                </label>
 	            </div>
 
