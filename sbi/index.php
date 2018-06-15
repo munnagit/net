@@ -148,7 +148,7 @@ include("sessions.php");
 							<div class="form-row">
 	                <label>
 	                    <span>Mobile</span>
-	                    <input type="text" name="mob" value="<?php echo $get_column['name'] ?>" required />
+	                    <input type="text" name="mob" value="<?php echo $get_column['mob'] ?>" required />
 	                </label>
 	            </div>
 
