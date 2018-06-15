@@ -62,13 +62,15 @@ include("sessions.php");
 	<?php
 	if (isset($_POST["name"])) {
 	    $name = $_POST['name'];
-	    $cifno= $_POST['cifno'];
-	    $accno= $_POST['accno'];
-			$aadhar= $_POST['aadhar'];
-	    $gender= $_POST['gender'];
-	    $village= $_POST['village'];
-	    $acctype= $_POST['acctype'];
-	    $oap= $_POST['oap'];
+			$mob = $_POST['mob'];
+	    $cifno = $_POST['cifno'];
+	    $accno = $_POST['accno'];
+			$cardno = $_POST['cardno'];
+			$aadhar = $_POST['aadhar'];
+	    $gender = $_POST['gender'];
+	    $village = $_POST['village'];
+	    $acctype = $_POST['acctype'];
+	    $oap = $_POST['oap'];
 	    //echo "Order: ". $_POST['birthday']. "<br />"; //Result Check
 
 	    //DB Connectivity & Insert Query
@@ -78,7 +80,7 @@ include("sessions.php");
 			{
 				$cid = $_POST["cid"];
 				if(empty($cid)){
-				$sql = "INSERT INTO tbl_sbiclients ". "(name, cifno, accno, aadhar, gender, village, acctype, oap)". "VALUES('$name','$cifno','$accno', '$aadhar', '$gender','$village','$acctype','$oap')";
+				$sql = "INSERT INTO tbl_sbiclients ". "(name, mob, cifno, accno, cardno, aadhar, gender, village, acctype, oap)". "VALUES('$name','$mob','$cifno','$accno','$cardno','$aadhar', '$gender','$village','$acctype','$oap')";
 			}
 			else {
 				//echo $cid;
@@ -143,6 +145,13 @@ include("sessions.php");
 	                </label>
 	            </div>
 
+							<div class="form-row">
+	                <label>
+	                    <span>Mobile</span>
+	                    <input type="text" name="mob" value="<?php echo $get_column['name'] ?>" required />
+	                </label>
+	            </div>
+
 	            <div class="form-row">
 	                <label>
 	                    <span>CIF No</span>
@@ -154,6 +163,13 @@ include("sessions.php");
 	                <label>
 	                    <span>Acc No</span>
 	                    <input maxlength="16" type="text" name="accno" value="<?php echo $get_column['accno'] ?>" required />
+	                </label>
+	            </div>
+
+							<div class="form-row">
+	                <label>
+	                    <span>Card No</span>
+	                    <input maxlength="16" type="text" name="cardno" value="<?php echo $get_column['cardno'] ?>" required />
 	                </label>
 	            </div>
 
@@ -197,10 +213,11 @@ include("sessions.php");
 							<div class="form-row">
 									<label>
 											<span>Account Type</span>
-											<select name="acctype" style="padding-right: 163px;">
+											<select name="acctype">
 												  <option value="<?php if (isset($_POST['cid'])) { echo $get_column['acctype']; }  ?>"> <?php if (isset($_POST['cid'])) { echo $get_column['acctype']; }  ?> </option>
 													<option value="SB-G">SB-G</option>
 													<option value="SB-T">SB-T</option>
+													<option value="OB">Other Banks</option>
 											</select>
 									</label>
 							</div>
