@@ -8,6 +8,10 @@
   	<meta http-equiv="X-UA-Compatible" content="IE=edge">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Required CSS for multi column div side by side -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     <title>Basic Form</title>
 
   	<link rel="stylesheet" href="../assets/demo.css">
@@ -37,7 +41,8 @@
     <?php
           if (isset($_REQUEST["cid"])) {
               $cid = $_REQUEST["cid"];
-
+              echo '<div class="w3-row">';
+              echo '<div class="w3-col w3-lightgray w3-container" style="width:20%">';
               echo "<form action=\"#\" method=\"post\" id=\"myForm\">
                 <input type=\"hidden\" name=\"cid\" value=\"$cid\" />
               </form>";
@@ -47,39 +52,61 @@
               $sql="SELECT * FROM tbl_sbiclients WHERE cid = '".$cid."'";
               $res=$con->query($sql);
               $nrows=$res->num_rows;
+              $get_column=$res->fetch_assoc();
+              echo "<center>";
               echo "<form action = 'banking/index.php' method = 'POST' class='form-horizontal'>";
               print "<table class=\"responstable\" style=\"margin: 0 auto;\">\n";
               print "         <tr>\n";
-              print "            <th data-th=\"Order Details\"><span>Client ID</span></th>\n";
+              print "            <th data-th=\"User Details\"><span>Client ID</span></th>\n";
+              echo "<td>". $get_column['cid']."</td>";
+              echo "</tr>";
+              echo "<tr>";
               print "            <th><center>Name</center></th>\n";
+              echo "<td>". $get_column['name']."</td>";
+              echo "</tr>";
+              echo "<tr>";
               print "            <th><center>CIF</center></th>\n";
+              echo "<td>". $get_column['cifno']."</td>";
+              echo "</tr>";
+              echo "<tr>";
               print "            <th><center>Account</center></th>\n";
+              echo "<td>". $get_column['accno']."</td>";
+              echo "</tr>";
+              echo "<tr>";
               print "            <th><center>Aadhar</center></th>\n";
+              echo "<td>". $get_column['aadhar']."</td>";
+              echo "</tr>";
+              echo "<tr>";
               print "            <th>Gender</th>\n";
+              echo "<td>". $get_column['gender']."</td>";
+              echo "</tr>";
+              echo "<tr>";
               print "            <th>Village</th>\n";
+              echo "<td>". $get_column['village']."</td>";
+              echo "</tr>";
+              echo "<tr>";
               print "            <th>Type</th>\n";
+              echo "<td>". $get_column['acctype']."</td>";
+              echo "</tr>";
+              echo "<tr>";
               print "            <th>OAP</th>\n";
-              print "         </tr>";
-              if ($nrows > 0) {
-                  while ($get_column=$res->fetch_assoc()) {
-                      echo "<td>". $get_column['cid']."</td>";
-                      echo "<td>". $get_column['name']."</td>";
-                      echo "<td>". $get_column['cifno']."</td>";
-                      echo "<td>". $get_column['accno']."</td>";
-                      echo "<td>". $get_column['aadhar']."</td>";
-                      echo "<td>". $get_column['gender']."</td>";
-                      echo "<td>". $get_column['village']."</td>";
-                      echo "<td>". $get_column['acctype']."</td>";
-                      echo "<td>". $get_column['oap']."</td>";
-                      echo "</tr>";
-                  }
-              }
+              echo "<td>". $get_column['oap']."</td>";
+              echo "</tr>";
+              echo "</center>";
+
               echo "</table>
               <br><br>
                 </form>";
+                echo '</div>';
               mysqli_close($con);
           }
 
+
+          // echo '<div class="w3-row">';
+          // echo '<div class="w3-col w3-black w3-container" style="width:20%"><p><center>Cash Balance</center></p></div>';
+          // echo '<div class="w3-col w3-black w3-container" style="width:60%"><p><h1>NetTech SBI Automation<h1></p></div>';
+          // echo '<div class="w3-col w3-black w3-container" style="width:20%"><center>Account Balance</center></div>';
+          // echo '</div>';
           //phpcode responsibele for inserting into tbl_sbitrans
           if (isset($_POST["oap"])) {
               $oap = $_POST['oap'];
@@ -120,6 +147,9 @@
         ?>
 
         <!-- You only need this form and the form-basic.css -->
+
+
+        <div class="w3-col w3-lightgray w3-container" style="width:60%">
 
         <form action = "<?php $_PHP_SELF ?>" method = "POST" class="form-basic" method="post">
 
@@ -169,6 +199,11 @@
         </form>
 
     </div>
+    <div class="w3-col w3-lightgray w3-container" style="width:20%"><center></center></div>
+  </div>
+
+
+  </div>
 
     </body>
 
