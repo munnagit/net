@@ -69,7 +69,7 @@
              $cifno = $_POST['search'];
              //echo "Mno: ". $_POST['search']. "<br />"; //Result Check
              include("connection.php");
-             $sql="SELECT * FROM tbl_sbiclients where cifno like \"$cifno%\" or accno like \"$cifno%\"";
+             $sql="SELECT * FROM tbl_sbiclients where cifno like \"$cifno%\" or accno like \"$cifno%\" or aadhar like \"$cifno%\"";
              $res=$con->query($sql);
              $nrows=$res->num_rows;
              echo "<br><br><br>";

@@ -65,6 +65,10 @@
               echo "<td>". $get_column['name']."</td>";
               echo "</tr>";
               echo "<tr>";
+              print "            <th>OAP</th>\n";
+              echo "<td>". $get_column['oap']."</td>";
+              echo "</tr>";
+              echo "<tr>";
               print "            <th><center>CIF</center></th>\n";
               echo "<td>". $get_column['cifno']."</td>";
               echo "</tr>";
@@ -88,10 +92,7 @@
               print "            <th>Type</th>\n";
               echo "<td>". $get_column['acctype']."</td>";
               echo "</tr>";
-              echo "<tr>";
-              print "            <th>OAP</th>\n";
-              echo "<td>". $get_column['oap']."</td>";
-              echo "</tr>";
+
               echo "</center>";
 
               echo "</table>
