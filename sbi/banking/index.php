@@ -200,7 +200,32 @@
         </form>
 
     </div>
-    <div class="w3-col w3-lightgray w3-container" style="width:20%"><center></center></div>
+    <div class="w3-col w3-lightgray w3-container" style="width:20%">
+    <?php
+    include("../connection.php");
+    $sql="SELECT * FROM tbl_sbitrans WHERE cid = '".$cid."' order by stamp desc limit 5";
+    $res=$con->query($sql);
+    $nrows=$res->num_rows;
+    print "<table class=\"responstable\" style=\"margin: 0 auto;max-width: 1250px\">\n";
+    print "         <tr>\n";
+    print "            <th><center>Mode</center></th>\n";
+    print "            <th><center>Amt</center></th>\n";
+    print "            <th><center>Date</center></th>\n";
+    print "         </tr>";
+    if ($nrows > 0) {
+        while ($get_column=$res->fetch_assoc()) {
+            echo"<tr>";
+            $sub = substr($get_column['opn'],0,1);
+            echo "<td>". $sub ."</td>";
+            echo "<td><center>". $get_column['amt']."</center></td>";
+            echo "<td><center>". date('d M',strtotime($get_column['stamp']))."</center></td>";
+            echo "</tr>";
+        }
+    }
+
+    mysqli_close($con);
+    ?>
+    </center></div>
   </div>
 
 
