@@ -17,6 +17,8 @@
   	<link rel="stylesheet" href="../assets/demo.css">
     <link rel="stylesheet" href="../assets/form-basic.css">
 
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
     <!-- Required CSS for table -->
     <!--<link rel="stylesheet" href="assets/normalize.css"> -->
     <link rel="stylesheet" href="../assets/style.css">
@@ -101,13 +103,7 @@
                 echo '</div>';
               mysqli_close($con);
           }
-
-
-          // echo '<div class="w3-row">';
-          // echo '<div class="w3-col w3-black w3-container" style="width:20%"><p><center>Cash Balance</center></p></div>';
-          // echo '<div class="w3-col w3-black w3-container" style="width:60%"><p><h1>NetTech SBI Automation<h1></p></div>';
-          // echo '<div class="w3-col w3-black w3-container" style="width:20%"><center>Account Balance</center></div>';
-          // echo '</div>';
+          
           //phpcode responsibele for inserting into tbl_sbitrans
           if (isset($_POST["oap"])) {
               $oap = $_POST['oap'];

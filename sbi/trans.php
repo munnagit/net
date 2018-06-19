@@ -9,35 +9,32 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
+
+
 	 <link rel="stylesheet" href="assets/demo.css">
 	 <link rel="stylesheet" href="assets/form-search.css">
    <link rel="stylesheet" href="assets/form-basic.css">
 
-   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+   <!-- Required CSS for table -->
+   <!--<link rel="stylesheet" href="assets/normalize.css"> -->
+   <link rel="stylesheet" href="assets/style.css">
+   <script src='http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js'></script>
 
-    <!-- Required CSS for table -->
-    <!--<link rel="stylesheet" href="assets/normalize.css"> -->
-    <link rel="stylesheet" href="assets/style.css">
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js'></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+   <!-- include jQuery library and table sorter plugin http://www.developerdesks.com/simple-table-sorting-in-jquery-with-mysql-data -->
+   <script type='text/javascript' src='js/jquery-latest.js'>
+   </script>
+   <script type='text/javascript' src='js/jquery.tablesorter.min.js'>
+   </script>
 
-     <!-- Below script required for selecting radion button when click on row -->
-    <script>
-       $(function() { // <== Doc ready
+   <!-- script needed for sorting table -->
+   <script type='text/javascript'>
+    $(document).ready(function() {
+    $("#table_sort").tablesorter({
 
-            $('tr').click(function(event) {
-
-                if(event.target.type != "radio") {
-
-                    var that = $(this).find('input:radio');
-                    that.attr('checked', !that.is(':checked'));
-
-                }
-            });
-        });
-    </script>
+    });
+    });
+   </script>
  </head>
-
  <body>
    <?php
        //phpcode responsibele for displaying tbl_cash row
@@ -59,12 +56,14 @@
              //$cifno = $_POST['search'];
              //echo "Mno: ". $_POST['search']. "<br />"; //Result Check
              include("connection.php");
-             $sql="SELECT a.cid,a.name,b.tid,b.amt,b.oap,b.opn,b.refno,b.stamp FROM tbl_sbitrans b,tbl_sbiclients a where b.cid = a.cid";
+             $sql="SELECT a.cid,a.name,b.tid,b.amt,b.oap,b.opn,b.refno,b.stamp FROM tbl_sbitrans b,tbl_sbiclients a where b.cid = a.cid ORDER BY b.stamp desc LIMIT 25";
              $res=$con->query($sql);
              $nrows=$res->num_rows;
              echo "<br><br><br>";
              //echo "<form action = 'banking/index.php' method = 'POST' class='form-horizontal'>";
-             print "<table class=\"responstable\" style=\"margin: 0 auto;max-width: 1250px\">\n";
+             //print "<table class=\"bordered\" id=\"sortedtable\" cellspacing=\"0\" style=\"margin: 0 auto;max-width: 1250px\">\n";
+             print "<table id=\"table_sort\" class=\"responstable\" style=\"margin: 0 auto;max-width: 1250px\">\n";
+             echo "<thead>\n<tr>";
              print "         <tr>\n";
              print "            <th><center>Client ID</center></th>\n";
              print "            <th><center>Name</center></th>\n";
@@ -75,6 +74,7 @@
              print "            <th><center>Ref No</center></th>\n";
              print "            <th><center>Time</center></th>\n";
              print "         </tr>";
+             print "</thead><tbody>";
              if ($nrows > 0) {
                  while ($get_column=$res->fetch_assoc()) {
                      echo"<tr>";
@@ -89,7 +89,7 @@
                      echo "</tr>";
                  }
              }
-
+             print "</tbody></table>";
              mysqli_close($con);
         ?>
 
