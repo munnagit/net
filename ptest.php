@@ -45,7 +45,7 @@
         </div>;
 <?php
 $t=time();
-$date = date('Y-m-d',$t);
-echo $date;
+echo($t . "<br>");
+echo(date("Y-m-d",$t));
 ?>
 </html>
