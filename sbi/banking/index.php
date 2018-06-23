@@ -215,7 +215,7 @@
             $sub = substr($get_column['opn'],0,1);
             echo "<td>". $sub ."</td>";
             echo "<td><center>". $get_column['amt']."</center></td>";
-            echo "<td><center>". date('d-M-Y',strtotime($get_column['stamp']))."</center></td>";
+            echo "<td><center>". date('d M',strtotime($get_column['stamp']))."</center></td>";
             echo "</tr>";
         }
     }
