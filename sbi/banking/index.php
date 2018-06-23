@@ -103,7 +103,7 @@
                 echo '</div>';
               mysqli_close($con);
           }
-          
+
           //phpcode responsibele for inserting into tbl_sbitrans
           if (isset($_POST["oap"])) {
               $oap = $_POST['oap'];
@@ -114,8 +114,9 @@
 
               //DB Connectivity & Insert Query
               include("../connection.php");
-
-              $sql = "INSERT INTO tbl_sbitrans ". "(cid, oap, opn, amt, refno)". "VALUES('$cid','$oap','$opn','$amt','$refno')";
+              date_default_timezone_set("Asia/Kolkata");
+              $stamp=date("Y-m-d h:i:s");
+              $sql = "INSERT INTO tbl_sbitrans ". "(cid, oap, opn, amt, refno, stamp)". "VALUES('$cid','$oap','$opn','$amt','$refno','$stamp')";
               if ($con->query($sql) === true) {
                   //echo "New record created successfully"; echo "<br />";
                   /*echo "<div onclick=\"submitform()\" class='alert success'>
@@ -214,7 +215,7 @@
             $sub = substr($get_column['opn'],0,1);
             echo "<td>". $sub ."</td>";
             echo "<td><center>". $get_column['amt']."</center></td>";
-            echo "<td><center>". date('d M',strtotime($get_column['stamp']))."</center></td>";
+            echo "<td><center>". date('d-M-Y',strtotime($get_column['stamp']))."</center></td>";
             echo "</tr>";
         }
     }

@@ -85,7 +85,7 @@
                      echo "<td>". $get_column['opn']."</td>";
                      echo "<td>". $get_column['oap']."</td>";
                      echo "<td>". $get_column['refno']."</td>";
-                     echo "<td>". $get_column['stamp']."</td>";
+                     echo "<td><center>". date('d-m-Y H:i',strtotime($get_column['stamp']))."</center></td>";
                      echo "</tr>";
                  }
              }

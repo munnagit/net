@@ -45,7 +45,7 @@
         </div>;
 <?php
 $t=time();
-echo($t . "<br>");
-echo(date("Y-m-d",$t));
+date_default_timezone_set("Asia/Kolkata");
+echo date("Y-m-d h:i:s");
 ?>
 </html>
