@@ -1,6 +1,6 @@
 <html>
-<head> 
-<link rel="stylesheet" href="css/menu.css"> 
+<head>
+<link rel="stylesheet" href="css/menu.css">
 <link rel="stylesheet" href="css/style.css">
      <script src="js/prefixfree.min.js"></script>
      <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
@@ -8,7 +8,7 @@
 
 
 <style>
-.alert 
+.alert
 {
     padding: 20px;
     background-color: #f44336;
@@ -22,7 +22,7 @@
 .alert.info {background-color: #2196F3;}
 .alert.warning {background-color: #2446F3;}
 
-.closebtn 
+.closebtn
 {
     margin-left: 15px;
     color: white;
@@ -44,7 +44,8 @@
         <strong>Success!</strong> Order Posted Successfully !!!
         </div>;
 <?php
-$date = date('Y-m-d');
+$t=time();
+$date = date('Y-m-d',$t);
 echo $date;
 ?>
 </html>
