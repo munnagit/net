@@ -83,7 +83,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<title>Login Form</title>
-
+  <link rel="icon" type="image/x-icon" href="images/logo.png" />
 	<link rel="stylesheet" href="assets/demo.css">
 	<link rel="stylesheet" href="assets/form-login.css">
 

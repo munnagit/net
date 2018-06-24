@@ -16,6 +16,8 @@
 
    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 
+   <link rel="icon" type="image/x-icon" href="images/logo.png" />
+
     <!-- Required CSS for table -->
     <!--<link rel="stylesheet" href="assets/normalize.css"> -->
     <link rel="stylesheet" href="assets/style.css">

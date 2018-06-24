@@ -12,6 +12,8 @@ include("../sessions.php");
 
   	<title>Self Banking</title>
 
+    <link rel="icon" type="image/x-icon" href="../images/logo.png" />
+
   	<link rel="stylesheet" href="../assets/demo.css">
       <link rel="stylesheet" href="../assets/form-basic.css">
 
