@@ -95,6 +95,7 @@
              print "            <th>Gender</th>\n";
              print "            <th>Village</th>\n";
              print "            <th>Type</th>\n";
+             print "            <th>Bank</th>\n";
              print "            <th>OAP</th>\n";
              print "         </tr>";
              if ($nrows > 0) {
@@ -109,6 +110,7 @@
                      echo "<td>". $get_column['gender']."</td>";
                      echo "<td>". $get_column['village']."</td>";
                      echo "<td>". $get_column['acctype']."</td>";
+                     echo "<td>". $get_column['bname']."</td>";
                      echo "<td>". $get_column['oap']."</td>";
                      echo "</tr>";
                  }
@@ -131,6 +133,7 @@
                          echo "<td>". $get_column['gender']."</td>";
                          echo "<td>". $get_column['village']."</td>";
                          echo "<td>". $get_column['acctype']."</td>";
+                         echo "<td>". $get_column['bname']."</td>";
                          echo "<td>". $get_column['oap']."</td>";
                          echo "</tr>";
                      }
