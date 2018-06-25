@@ -57,6 +57,22 @@ include("sessions.php");
 	 		    text-align: center;
 	 		}
 	 	</style>
+
+	<!-- code for onselect bank selection display -->
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script type="text/javascript">
+		    $(function () {
+		        $("#atype").change(function () {
+		            if ($(this).val() == "Other Banks") {
+		                $("#bndiv").show();
+		            } else {
+		                $("#bndiv").hide();
+		            }
+		        });
+		    });
+		</script>
+
+
 </head>
 
 <body>
@@ -66,6 +82,7 @@ include("sessions.php");
 			$mob = $_POST['mob'];
 	    $cifno = $_POST['cifno'];
 	    $accno = $_POST['accno'];
+			$bname = $_POST['bname'];
 			$cardno = $_POST['cardno'];
 			$aadhar = $_POST['aadhar'];
 	    $gender = $_POST['gender'];
@@ -81,12 +98,12 @@ include("sessions.php");
 			{
 				$cid = $_POST["cid"];
 				if(empty($cid)){
-				$sql = "INSERT INTO tbl_sbiclients ". "(name, mob, cifno, accno, cardno, aadhar, gender, village, acctype, oap)". "VALUES('$name','$mob','$cifno','$accno','$cardno','$aadhar', '$gender','$village','$acctype','$oap')";
+				$sql = "INSERT INTO tbl_sbiclients ". "(name, mob, cifno, accno, cardno, aadhar, gender, village, acctype, bname, oap)". "VALUES('$name','$mob','$cifno','$accno','$cardno','$aadhar', '$gender','$village','$acctype','$bname','$oap')";
 			}
 			else {
 				//echo $cid;
-				//$sql = "UPDATE tbl_sbiclients set ". "(name, cifno, accno, gender, village, acctype, oap)". "VALUES('$name','$cifno','$accno', '$gender','$village','$acctype','$oap')";
- 			  $sql = "UPDATE tbl_sbiclients set name = '$name', cifno = $cifno, accno = $accno, aadhar = $aadhar, gender = '$gender', village = '$village', acctype = '$acctype', oap = '$oap' where cid = $cid";
+				$sql = "UPDATE tbl_sbiclients set ". "(name, cifno, accno, gender, village, acctype, oap)". "VALUES('$name','$cifno','$accno', '$gender','$village','$acctype','$oap')";
+ 			  $sql = "UPDATE tbl_sbiclients set name = '$name', mob = $mob, cifno = $cifno, accno = $accno, cardno = $cardno, aadhar = $aadhar, gender = '$gender', village = '$village', acctype = '$acctype', bname = '$bname', oap = '$oap' where cid = $cid";
 			}
 		}
 
@@ -98,7 +115,7 @@ include("sessions.php");
     			<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>
     			<strong>Success!</strong> Client Data Updated Successfully !!
   				</div>
-					<meta http-equiv=\"refresh\" content=\"0;url=form-search.php \" >
+					<meta http-equiv=\"refresh\" content=\"15;url=form-search.php \" >
 	        </div>";
 
 	    } else {
@@ -195,8 +212,9 @@ include("sessions.php");
 							<div class="form-row">
 									<label>
 											<span>Village</span>
-											<select name="village" style="padding-right: 16px;">
-													<option value="<?php if (isset($_POST['cid'])) { echo $get_column['village']; }  ?>"> <?php if (isset($_POST['cid'])) { echo $get_column['village']; }  ?> </option>
+											<input type="text" name="village" list="villages" value="<?php if (isset($_POST['cid'])) { echo $get_column['village']; }  ?>" style="padding-right: 16px;">
+													<datalist id="villages">
+													<option  > <?php if (isset($_POST['cid'])) { echo $get_column['village']; }  ?> </option>
 													<option value="Cheyur">Cheyur</option>
 													<option value="Muriyandam Palayam">Muriyandam Palayam</option>
 													<option value="Thandukaran Palayam">Thandukaran Palayam</option>
@@ -207,19 +225,39 @@ include("sessions.php");
 													<option value="Pothampalayam">Pothampalayam</option>
 													<option value="Thathanoor">Thathanoor</option>
 													<option value="Periyakattup Palayam">Periyakattup Palayam</option>
-											</select>
+												  </datalist>
 									</label>
 							</div>
 
 							<div class="form-row">
 									<label>
 											<span>Account Type</span>
-											<select name="acctype">
+											<select name="acctype" id="atype">
 												  <option value="<?php if (isset($_POST['cid'])) { echo $get_column['acctype']; }  ?>"> <?php if (isset($_POST['cid'])) { echo $get_column['acctype']; }  ?> </option>
 													<option value="SB-G">SB-G</option>
 													<option value="SB-T">SB-T</option>
-													<option value="OB">Other Banks</option>
+													<option value="Other Banks">Other Banks</option>
 											</select>
+									</label>
+							</div>
+
+							<div class="form-row"  id="bndiv" style="display: none">
+									<label>
+											<span>Bank</span>
+											<input type="text" value="SBI" name="bname" list="banks" />
+													<datalist id="banks">
+													  <option value="<?php if (isset($_POST['cid'])) { echo $get_column['bname']; }  ?>"> <?php if (isset($_POST['cid'])) { echo $get_column['acctype']; }  ?> </option>
+														<option value="SBI" selected>SBI</option>
+														<option value="HDFC">HDFC</option>
+														<option value="ICICI">ICICI</option>
+														<option value="IDBI">IDBI</option>
+														<option value="Union Bank">Union Bank</option>
+														<option value="Bank of Baroda">Bank of Baroda</option>
+														<option value="Canara Bank">Canara Bank</option>
+														<option value="Axis Bank">Axis Bank</option>
+														<option value="Punjab National Bank">Punjab National Bank</option>
+														<option value="Indian Bank">Indian Bank</option>
+												  </datalist>
 									</label>
 							</div>
 
