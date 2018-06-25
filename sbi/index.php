@@ -102,7 +102,7 @@ include("sessions.php");
 			}
 			else {
 				//echo $cid;
-				$sql = "UPDATE tbl_sbiclients set ". "(name, cifno, accno, gender, village, acctype, oap)". "VALUES('$name','$cifno','$accno', '$gender','$village','$acctype','$oap')";
+				//$sql = "UPDATE tbl_sbiclients set ". "(name, cifno, accno, gender, village, acctype, oap)". "VALUES('$name','$cifno','$accno', '$gender','$village','$acctype','$oap')";
  			  $sql = "UPDATE tbl_sbiclients set name = '$name', mob = $mob, cifno = $cifno, accno = $accno, cardno = $cardno, aadhar = $aadhar, gender = '$gender', village = '$village', acctype = '$acctype', bname = '$bname', oap = '$oap' where cid = $cid";
 			}
 		}
