@@ -115,7 +115,7 @@ include("sessions.php");
     			<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>
     			<strong>Success!</strong> Client Data Updated Successfully !!
   				</div>
-					<meta http-equiv=\"refresh\" content=\"15;url=form-search.php \" >
+					<meta http-equiv=\"refresh\" content=\"0;url=form-search.php \" >
 	        </div>";
 
 	    } else {
