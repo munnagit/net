@@ -71,7 +71,7 @@
              $cifno = $_POST['search'];
              //echo "Mno: ". $_POST['search']. "<br />"; //Result Check
              include("connection.php");
-             $sql="SELECT * FROM tbl_sbiclients where cifno like \"$cifno%\" or accno like \"$cifno%\" or aadhar like \"$cifno%\"";
+             $sql="SELECT * FROM tbl_sbiclients where cifno like \"$cifno%\" or accno like \"$cifno%\" or aadhar like \"$cifno%\" or mob like \"$cifno%\" or cardno like \"$cifno%\"";
              $res=$con->query($sql);
              $nrows=$res->num_rows;
              echo "<br><br><br>";
@@ -87,10 +87,12 @@
              print "<table class=\"responstable\" style=\"margin: 0 auto;max-width: 1250px\">\n";
              print "         <tr>\n";
              print "            <th><span>Select</span></th>\n";
-             print "            <th data-th=\"Order Details\"><span>Client ID</span></th>\n";
+             print "            <th data-th=\"Order Details\"><span>CID</span></th>\n";
              print "            <th><center>Name</center></th>\n";
+             print "            <th><center>Mobile</center></th>\n";
              print "            <th><center>CIF</center></th>\n";
              print "            <th><center>Account</center></th>\n";
+             print "            <th><center>Card</center></th>\n";
              print "            <th><center>Aadhar</center></th>\n";
              print "            <th>Gender</th>\n";
              print "            <th>Village</th>\n";
@@ -104,8 +106,10 @@
                     <td><input type='radio' name='cid' value=" . $get_column['cid']. " />";
                      echo "<td>". $get_column['cid']."</td>";
                      echo "<td>". $get_column['name']."</td>";
+                     echo "<td>". $get_column['mob']."</td>";
                      echo "<td>". $get_column['cifno']."</td>";
                      echo "<td>". $get_column['accno']."</td>";
+                     echo "<td>". $get_column['cardno']."</td>";
                      echo "<td>". $get_column['aadhar']."</td>";
                      echo "<td>". $get_column['gender']."</td>";
                      echo "<td>". $get_column['village']."</td>";
@@ -127,8 +131,10 @@
                          echo "<tr> <td><input type='radio' name='cid' value=" . $get_column['cid']. " />";
                          echo "<td>". $get_column['cid']."</td>";
                          echo "<td>". $get_column['name']."</td>";
+                         echo "<td>". $get_column['mob']."</td>";
                          echo "<td>". $get_column['cifno']."</td>";
                          echo "<td>". $get_column['accno']."</td>";
+                         echo "<td>". $get_column['cardno']."</td>";
                          echo "<td>". $get_column['aadhar']."</td>";
                          echo "<td>". $get_column['gender']."</td>";
                          echo "<td>". $get_column['village']."</td>";
