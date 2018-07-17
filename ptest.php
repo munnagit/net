@@ -1,51 +1,29 @@
-<html>
-<head>
-<link rel="stylesheet" href="css/menu.css">
-<link rel="stylesheet" href="css/style.css">
-     <script src="js/prefixfree.min.js"></script>
-     <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
-     <link href='http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+<select id="oap">
+  <option value="No">No</option>
+  <option value="Yes">Yes</option>
+</select>
+
+<select id="opn">
+  <option value="blank">&nbsp;</option>
+</select>
 
 
-<style>
-.alert
-{
-    padding: 20px;
-    background-color: #f44336;
-    color: white;
-    opacity: 1;
-    transition: opacity 0.6s;
-    margin-bottom: 15px;
-}
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script>
+var lookup = {
+   'No': ['Deposit','Withdrawal'],
+   'Yes': ['Withdrawal']
+   };
 
-.alert.success {background-color: #4CAF50;}
-.alert.info {background-color: #2196F3;}
-.alert.warning {background-color: #2446F3;}
-
-.closebtn
-{
-    margin-left: 15px;
-    color: white;
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.closebtn:hover {
-    color: black;
-}
-</style>
- </head>
- <div class='alert success'>
-        <span class='closebtn'>&times;</span>
-        <strong>Success!</strong> Order Posted Successfully !!!
-        </div>;
-<?php
-$t=time();
-date_default_timezone_set("Asia/Kolkata");
-echo date("Y-m-d h:i:s");
-?>
-</html>
+$('#oap').on('change', function() {
+   // Set selected value as variable
+   var selectValue = $(this).val();
+   // Empty the schools select field
+   $('#opn').empty();
+   // For each school in the selected country
+   for (i = 0; i < lookup[selectValue].length; i++) {
+      // Output school
+      $('#opn').append("<option value='" + lookup[selectValue][i] + "'>" + lookup[selectValue][i] + "</option>");
+   }
+});
+</script>

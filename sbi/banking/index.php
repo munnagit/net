@@ -26,11 +26,14 @@
     <link rel="stylesheet" href="../assets/style.css">
     <script src='http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js'></script>
 
+
+
  </head>
 
 
 
  <body>
+
       <?php include("../headrow.php"); ?>
     <ul>
         <li><a href="../index.php">New Client</a></li>
@@ -160,7 +163,7 @@
             <div class="form-row">
                 <label>
                     <span>OAP</span>
-                    <select name="oap" style="padding-right: 175px;">
+                    <select id="oap" name="oap" style="padding-right: 175px;">
                         <option value="No">No</option>
                         <option value="Yes">Yes</option>
                     </select>
@@ -170,9 +173,10 @@
             <div class="form-row">
                 <label>
                     <span>Operation</span>
-                    <select name="opn">
-                        <option value="Deposit">Deposit</option>
-                        <option value="Withdrawal">Withdrawal</option>
+                    <select name="opn" id="opn">
+                      <option value="blank">&nbsp;</option>
+                      <option value="Withdrawal">Withdrawal</option>
+                      <option value="Deposit">Deposit</option>
                     </select>
                 </label>
             </div>
@@ -229,6 +233,24 @@
 
 
   </div>
+
+
+  <!-- Select Option Change based on another Select, This has to be below html defenition -->
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script>
+      var lookup = {
+     'No': ['Deposit','Withdrawal'],
+     'Yes': ['Withdrawal']
+     };
+
+     $('#oap').on('change', function() {
+     var selectValue = $(this).val();
+     $('#opn').empty();
+     for (i = 0; i < lookup[selectValue].length; i++) {
+        $('#opn').append("<option value='" + lookup[selectValue][i] + "'>" + lookup[selectValue][i] + "</option>");
+     }
+  });
+  </script>
 
     </body>
 
