@@ -39,13 +39,19 @@
             });
         });
     </script>
+
+    <script>
+      function myFunction() {
+        alert("Kindly Conform Delete");
+        }
+    </script>
  </head>
 
  <body>
    <?php
        //phpcode responsibele for displaying tbl_cash row
        include("headrow.php");
-    ?>
+   ?>
 
     <ul>
         <li><a href="index.php">New Client</a></li>
@@ -155,8 +161,13 @@
 
               <div id='float2' style='width:50%;float:left;padding: 12px'>
               <button type='submit' name='edit' value='edit' formaction='index.php'>Edit</button>
-              </div>
+              <button type='submit' onclick='myFunction()' name='delete' value='delete' formaction='condel.php' style='margin-left: 15px;'>Delete</button>
+
+
             </div>
+              </div>
+
+
 
 
           </form>";
