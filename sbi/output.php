@@ -40,7 +40,7 @@ $pdf->Cell(55,6,'NAME',1,0,'C',1);
 $pdf->Cell(14,6,'AMT',1,0,'L',1);
 $pdf->Cell(12,6,'OAP',1,0,'L',1);
 $pdf->Cell(25,6,'OPN',1,0,'C',1);
-$pdf->Cell(20,6,'REFNO',1,0,'L',1);
+$pdf->Cell(22,6,'REFNO',1,0,'L',1);
 $pdf->Cell(25,6,'DATE',1,0,'C',1);
 $pdf->Cell(25,6,'TIME',1,0,'C',1);
 $pdf->SetFont('Arial','',12);
@@ -56,7 +56,7 @@ $result=$con->query($sql);
 $i = 0;
 
 //Set maximum rows per page
-$max = 75;
+$max = 40;
 
 //Set Row Height
 $row_height = 6;
@@ -69,7 +69,7 @@ while($row = $result->fetch_assoc())
         $pdf->AddPage();
 
         // //print column titles for the current page
-        $pdf->SetY($y_axis_initial);
+        $pdf->SetFillColor(215,255,215);
         $pdf->SetX(5);
         $pdf->Cell(12,6,'CID',1,0,'L',1);
         $pdf->Cell(12,6,'TID',1,0,'L',1);
@@ -77,16 +77,18 @@ while($row = $result->fetch_assoc())
         $pdf->Cell(14,6,'AMT',1,0,'L',1);
         $pdf->Cell(12,6,'OAP',1,0,'L',1);
         $pdf->Cell(25,6,'OPN',1,0,'C',1);
-        $pdf->Cell(20,6,'REFNO',1,0,'L',1);
+        $pdf->Cell(22,6,'REFNO',1,0,'L',1);
         $pdf->Cell(25,6,'DATE',1,0,'C',1);
         $pdf->Cell(25,6,'TIME',1,0,'C',1);
         $pdf->SetFont('Arial','',12);
+        $pdf->SetFillColor(255,255,255);
 
         //Go to next row
-        $y_axis = $y_axis + $row_height;
+        //$y_axis = $y_axis + $row_height;
 
         //Set $i variable to 0 (first row)
         $i = 0;
+        $y_axis = 16;
     }
 
     $cid = $row['cid'];
@@ -108,7 +110,7 @@ while($row = $result->fetch_assoc())
     $pdf->Cell(14,6,$amt,1,0,'L',1);
 		$pdf->Cell(12,6,$oap,1,0,'L',1);
 		$pdf->Cell(25,6,$opn,1,0,'L',1);
-		$pdf->Cell(20,6,$refno,1,0,'L',1);
+		$pdf->Cell(22,6,$refno,1,0,'L',1);
 		$pdf->Cell(25,6,$date,1,0,'L',1);
 		$pdf->Cell(25,6,$time,1,0,'C',1);
 
