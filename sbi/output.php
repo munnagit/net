@@ -45,7 +45,7 @@ $y_axis = $y_axis + $row_height;
 
 //Select the Products you want to show in your PDF file
 //$result=query('SELECT a.cid,a.name,b.amt FROM tbl_sbitrans b,tbl_sbiclients a where b.cid = a.cid ORDER BY b.stamp desc LIMIT 25',$con);
-$sql="SELECT a.cid,b.tid,a.name,b.amt,b.oap,b.opn,b.refno,b.stamp FROM tbl_sbitrans b,tbl_sbiclients a where b.cid = a.cid and b.stamp > '$from' and b.stamp < '$to' ORDER BY b.stamp desc LIMIT 25";
+$sql="SELECT a.cid,b.tid,a.name,b.amt,b.oap,b.opn,b.refno,b.stamp FROM tbl_sbitrans b,tbl_sbiclients a where b.cid = a.cid and b.stamp >= '$from' and b.stamp <= '$to' ORDER BY b.stamp desc LIMIT 25";
 //echo $sql;
 $result=$con->query($sql);
 //initialize counter
