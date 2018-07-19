@@ -56,7 +56,7 @@ $result=$con->query($sql);
 $i = 0;
 
 //Set maximum rows per page
-$max = 25;
+$max = 75;
 
 //Set Row Height
 $row_height = 6;
@@ -71,12 +71,16 @@ while($row = $result->fetch_assoc())
         // //print column titles for the current page
         $pdf->SetY($y_axis_initial);
         $pdf->SetX(5);
-				$pdf->Cell(30,6,'CID',1,0,'L',1);
-				$pdf->Cell(50,6,'NAME',1,0,'L',1);
-				$pdf->Cell(30,6,'AMOUNT',1,0,'R',1);
-				$pdf->Cell(30,6,'OAP',1,0,'R',1);
-				$pdf->Cell(30,6,'Operation',1,0,'R',1);
-				$pdf->Cell(30,6,'Refno',1,0,'R',1);
+        $pdf->Cell(12,6,'CID',1,0,'L',1);
+        $pdf->Cell(12,6,'TID',1,0,'L',1);
+        $pdf->Cell(55,6,'NAME',1,0,'C',1);
+        $pdf->Cell(14,6,'AMT',1,0,'L',1);
+        $pdf->Cell(12,6,'OAP',1,0,'L',1);
+        $pdf->Cell(25,6,'OPN',1,0,'C',1);
+        $pdf->Cell(20,6,'REFNO',1,0,'L',1);
+        $pdf->Cell(25,6,'DATE',1,0,'C',1);
+        $pdf->Cell(25,6,'TIME',1,0,'C',1);
+        $pdf->SetFont('Arial','',12);
 
         //Go to next row
         $y_axis = $y_axis + $row_height;
