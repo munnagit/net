@@ -175,7 +175,7 @@
                 <label>
                     <span>Operation</span>
                     <select name="opn" id="opn">
-                      <option value="blank">&nbsp;</option>
+                    <!--  <option value="blank">&nbsp;</option> -->
                       <option value="Withdrawal">Withdrawal</option>
                       <option value="Deposit">Deposit</option>
                     </select>
