@@ -17,7 +17,7 @@
          echo '<div class="w3-col w3-black w3-container" style="width:20%"><center>Account Balance</center></div>';
          echo '</div>';
          echo '<div class="w3-col w3-black w3-container" style="width:20%"><p><center>'. $get_column['scih'].'</center></p></div>';
-         echo '<div class="w3-col w3-black w3-container" style="width:60%"><center><a href="logout.php" style="float: none;display: inline;background-color: #000000;"><img  src="http://www.iconsplace.com/icons/preview/red/shutdown-256.png" style="width: 20px;background-color: black;float: none"></a></center></div>';
+         echo '<div class="w3-col w3-black w3-container" style="width:60%"><center><a href="logout.php" style="float: none;display: inline;background-color: #000000;"><img  src="https://cdn3.iconfinder.com/data/icons/basic-colored/1024/shutdown-512.png" style="width: 20px;background-color: black;float: none"></a></center></div>';
          echo '<div class="w3-col w3-black w3-container" style="width:20%"><p>'. $get_column['scab'].'</p></div>';
          echo '</header>';
        }
