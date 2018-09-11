@@ -77,10 +77,9 @@
               if ($get_column['oap'] == "Yes")
               {
                echo "<td color: red>". $get_column['oap']."</td>";
-               else {
+              }else {
                  echo "<td>". $get_column['oap']."</td>";
                }
-              }
               echo "</tr>";
               echo "<tr>";
               print "            <th><center>CIF</center></th>\n";
