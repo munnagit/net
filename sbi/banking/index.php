@@ -76,7 +76,7 @@
               print "            <th>OAP</th>\n";
               if ($get_column['oap'] == "Yes")
               {
-               echo "<td style='color: red;background-color: beige;'>". $get_column['oap']."</td>";
+               echo "<td style='color: red;background-color: #eded15;'>". $get_column['oap']."</td>";
               }else {
                  echo "<td>". $get_column['oap']."</td>";
                }
