@@ -223,12 +223,24 @@
     print "         </tr>";
     if ($nrows > 0) {
         while ($get_column=$res->fetch_assoc()) {
-            echo"<tr>";
-            $sub = substr($get_column['opn'],0,1);
-            echo "<td>". $sub ."</td>";
-            echo "<td><center>". $get_column['amt']."</center></td>";
-            echo "<td><center>". date('d M',strtotime($get_column['stamp']))."</center></td>";
-            echo "</tr>";
+            if ($get_column['oap'] == "Yes")
+            {
+              echo"<tr style='color: red;background-color: #eded15;'>";
+              $sub = substr($get_column['opn'],0,1);
+              echo "<td>". $sub ."</td>";
+              echo "<td><center>". $get_column['amt']."</center></td>";
+              echo "<td><center>". date('d M',strtotime($get_column['stamp']))."</center></td>";
+              echo "</tr>";
+             //echo "<td style='color: red;background-color: #eded15;'>". $get_column['oap']."</td>";
+            }else {
+              echo"<tr>";
+              $sub = substr($get_column['opn'],0,1);
+              echo "<td>". $sub ."</td>";
+              echo "<td><center>". $get_column['amt']."</center></td>";
+              echo "<td><center>". date('d M',strtotime($get_column['stamp']))."</center></td>";
+              echo "</tr>";
+           }
+
         }
     }
 
