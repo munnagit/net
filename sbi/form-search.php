@@ -66,7 +66,7 @@
         <!-- You only need this form and the form-search.css -->
 
         <form action = "<?php $_PHP_SELF ?>" method = "POST" class="form-search" method="post" action="#">
-            <input type="search" name="search" placeholder="Name or CIF or ACC...">
+            <input type="search" onkeyup="this.value = this.value.toUpperCase()"; name="search" placeholder="Name or CIF or ACC...">
             <button type="submit">Search</button>
             <i class="fa fa-search"></i>
         </form>

@@ -197,7 +197,7 @@
             <div class="form-row">
                     <label>
                         <span>Refrence Number</span>
-                        <input type="text" name="refno" required>
+                        <input type="text" onkeyup="this.value = this.value.toUpperCase()"; name="refno" required>
                     </label>
             </div>
 

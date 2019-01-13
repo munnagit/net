@@ -160,7 +160,7 @@ include("sessions.php");
 	            <div class="form-row">
 	                <label>
 	                    <span>Name</span>
-	                    <input type="text" name="name" value="<?php echo $get_column['name'] ?>" required />
+	                    <input type="text" onkeyup="this.value = this.value.toUpperCase()"; name="name" value="<?php echo $get_column['name'] ?>" required />
 	                </label>
 	            </div>
 
@@ -213,19 +213,19 @@ include("sessions.php");
 							<div class="form-row">
 									<label>
 											<span>Village</span>
-											<input type="text" name="village" list="villages" value="<?php if (isset($_POST['cid'])) { echo $get_column['village']; }  ?>" style="padding-right: 16px;">
+											<input type="text" onkeyup="this.value = this.value.toUpperCase()"; name="village" list="villages" value="<?php if (isset($_POST['cid'])) { echo $get_column['village']; }  ?>" style="padding-right: 16px;">
 													<datalist id="villages">
 													<option  > <?php if (isset($_POST['cid'])) { echo $get_column['village']; }  ?> </option>
-													<option value="Cheyur">Cheyur</option>
-													<option value="Muriyandam Palayam">Muriyandam Palayam</option>
-													<option value="Thandukaran Palayam">Thandukaran Palayam</option>
-													<option value="Kanur">Kanur</option>
-													<option value="Chellappan Palayam">Chellappan Palayam</option>
-													<option value="Otchampalayam">Otchampalayam</option>
-													<option value="Papankulam">Papankulam</option>
-													<option value="Pothampalayam">Pothampalayam</option>
-													<option value="Thathanoor">Thathanoor</option>
-													<option value="Periyakattup Palayam">Periyakattup Palayam</option>
+													<option value="CHEYUR">Cheyur</option>
+													<option value="MURIYANDAM PALAYAM">Muriyandam Palayam</option>
+													<option value="THANDUKRAN PALAYAM">Thandukaran Palayam</option>
+													<option value="KANUR">Kanur</option>
+													<option value="CHELLAPPAN PALAYAM">Chellappan Palayam</option>
+													<option value="OTCHAMPALAYAM">Otchampalayam</option>
+													<option value="PAPANKULAM">Papankulam</option>
+													<option value="POTHAMPALAYAM">Pothampalayam</option>
+													<option value="THATHANOOR">Thathanoor</option>
+													<option value="PERIYAKATTUP PALAYAM">Periyakattup Palayam</option>
 												  </datalist>
 									</label>
 							</div>
