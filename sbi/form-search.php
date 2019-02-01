@@ -58,6 +58,7 @@
         <li><a href="./banking/personal.php">Self Banking</a></li>
         <li><a href="form-search.html" class="active">Search</a></li>
         <li><a href="trans.php">Transactions</a></li>
+        <li><a href="stats.php" >Statistics</a></li>
         <li><a href="report.php">Reports</a></li>
     </ul>
 
@@ -82,9 +83,6 @@
              $res=$con->query($sql);
              $nrows=$res->num_rows;
              echo "<br><br><br>";
-
-
-             //echo "<form action = 'banking/index.php' method = 'POST' class='form-horizontal'>";
 
              if (isset($_POST['banking'])) {
                 echo "<form action = 'banking/index.php' method = 'POST' class='form-horizontal'>";
@@ -156,12 +154,13 @@
             <br>
             <div style='width:100&#37;;'>
 
-              <div id='float1' style='width:45%;float:left;padding: 12px'>
+              <div id='float1' style='width:37%;float:left;padding: 12px'>
               <button style='float:right' type='submit' name='banking' value='banking'>Banking</button>
               </div>
 
               <div id='float2' style='width:45%;float:left;padding: 12px'>
-              <button type='submit' name='edit' value='edit' formaction='index.php'>Edit</button>
+              <button type='submit' name='edit' value='edit' formaction='index.php'>Profile Edit</button>
+              <button type='submit' name='tedit' value='tedit' formaction='list_trans.php' style='margin-left: 15px;'>Transaction Edit</button>
               <button type='submit' name='report' value='report' formaction='clioutput.php' style='margin-left: 15px;'>Report</button>
               <button type='submit' onclick='myFunction()' name='delete' value='delete' formaction='condel.php' style='margin-left: 15px;'>Delete</button>
 
