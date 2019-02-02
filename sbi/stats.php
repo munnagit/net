@@ -72,8 +72,38 @@
             $sumOapWdl="SELECT SUM(amt) as 'COUNT(*)' FROM tbl_sbitrans WHERE opn='Withdrawal' AND oap='Yes'";
 
             $sqlQuery = array($countClient, $countTrans, $countOapTrans, $countRegTrans, $countDeposit, $countWithdrawal, $sumDep, $sumWdl, $sumRegWdl, $sumRegDep, $sumOapWdl);
-            $colName = array("Client","Transaction","OAP","Regular","Deposit","Withdrawal","Sum-DEP","Sum-WDL","sumREG-WDL","sumREG-DEP","sumOAP-WDL");
+            $colName = array("Client","Transaction","OAP","Regular","Deposit","Withdrawal","Sum DEP","Sum WDL","Sum REG-WDL","Sum REG-DEP","Sum OAP-WDL");
             $period = array("def","Year","Month","Week","Today");
+
+
+            function numberToCurrency($num)
+            {
+                if(setlocale(LC_MONETARY, 'en_IN'))
+                return money_format('%.0n', $num);
+                else {
+                $explrestunits = "" ;
+                if(strlen($num)>3){
+                    $lastthree = substr($num, strlen($num)-3, strlen($num));
+                    $restunits = substr($num, 0, strlen($num)-3); // extracts the last three digits
+                    $restunits = (strlen($restunits)%2 == 1)?"0".$restunits:$restunits; // explodes the remaining digits in 2's formats, adds a zero in the beginning to maintain the 2's grouping.
+                    $expunit = str_split($restunits, 2);
+                    for($i=0; $i<sizeof($expunit); $i++){
+                        // creates each of the 2's group and adds a comma to the end
+                        if($i==0)
+                        {
+                            $explrestunits .= (int)$expunit[$i].","; // if is first value , convert into integer
+                        }else{
+                            $explrestunits .= $expunit[$i].",";
+                        }
+                    }
+                    $thecash = $explrestunits.$lastthree;
+                } else {
+                    $thecash = $num;
+                }
+                return '₹ ' . $thecash;
+                }
+            }
+
 
              function identifyDate($period, $sql)
              {
@@ -165,9 +195,18 @@
                 echo"<tr>";
                 echo "<th>".$colName[$i]."</th>";
                 for ($j=0;$j<5;$j++)
-                {
+                {   
                     $get_column = identifyDate($period[$j],$sqlQuery[$i]);
-                    echo "<td>". $get_column['COUNT(*)'] ."</td>";
+                    $amount = $get_column['COUNT(*)'];
+
+                    if (strpos($colName[$i], 'Sum') !== false) {
+                        setlocale(LC_ALL, '');
+                        $amount = numberToCurrency($amount);                    
+                        echo "<td>". $amount ."</td>";
+                    }
+                    else {
+                        echo "<td>". $amount ."</td>";
+                    }
                 }
                 echo"<tr>";
             }
