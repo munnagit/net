@@ -47,6 +47,24 @@
    <div class="main-content">
 
     <?php
+
+          //increase decrease drawerTable
+          function updateCash($updIn, $cash, $arith)
+          {
+              include("../connection2.php");
+
+              if ($updIn == "cash") {
+                  $sql = "UPDATE tbl_cash SET cash = cash $arith $cash WHERE id=1";
+                 
+              } else if ($updIn == "account") {
+                  $sql = "UPDATE tbl_cash SET account = account $arith $cash WHERE id=1";
+              }
+
+              if ($con->query($sql) === true) {  } else {
+                  echo "Error: " . $sql . "<br>" . $con->error;
+              }
+          }
+
           if (isset($_REQUEST["cid"])) {
               $cid = $_REQUEST["cid"];
               echo '<div class="w3-row">';
@@ -137,12 +155,14 @@
                   if ($opn=="Deposit") {
                       $sql = "UPDATE tbl_cash SET scih=scih+'$amt'";
                       $con->query($sql);
+                      updateCash("cash",$amt,"+");
 
                       $sql = "UPDATE tbl_cash SET scab=scab-'$amt'";
                       $con->query($sql);
                   } else {
                       $sql = "UPDATE tbl_cash SET scih=scih-'$amt'";
                       $con->query($sql);
+                      updateCash("cash",$amt,"-");
 
                       $sql = "UPDATE tbl_cash SET scab=scab+'$amt'";
                       $con->query($sql);
