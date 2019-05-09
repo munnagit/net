@@ -49,7 +49,7 @@ $y_axis = $y_axis + $row_height;
 
 //Select the Products you want to show in your PDF file
 //$result=query('SELECT a.cid,a.name,b.amt FROM tbl_sbitrans b,tbl_sbiclients a where b.cid = a.cid ORDER BY b.stamp desc LIMIT 25',$con);
-$sql="SELECT a.cid,b.tid,a.name,b.amt,b.oap,b.opn,b.refno,b.stamp FROM tbl_sbitrans b,tbl_sbiclients a where b.cid = a.cid and b.stamp between '$from' and '$to' ORDER BY b.stamp";
+$sql="SELECT a.cid,b.tid,a.name,b.amt,b.oap,b.opn,b.refno,b.stamp FROM tbl_sbitrans b,tbl_sbiclients a where b.cid = a.cid and b.stamp between '$from' and '$to' ORDER BY b.stamp desc";
 //echo $sql;
 $result=$con->query($sql);
 //initialize counter
@@ -99,8 +99,8 @@ while($row = $result->fetch_assoc())
 		$opn = $row['opn'];
 		$refno = $row['refno'];
 		$stamp = $row['stamp'];
-		$date = date('d-m-Y',strtotime($stamp));
-		$time = date('h:i:s',strtotime($stamp));
+		$date = date('d M', strtotime($row['stamp']));
+		$time = date('h:i A', strtotime($row['stamp']));
 
     $pdf->SetY($y_axis);
     $pdf->SetX(5);
@@ -111,7 +111,7 @@ while($row = $result->fetch_assoc())
 		$pdf->Cell(12,6,$oap,1,0,'L',1);
 		$pdf->Cell(25,6,$opn,1,0,'L',1);
 		$pdf->Cell(22,6,$refno,1,0,'L',1);
-		$pdf->Cell(25,6,$date,1,0,'L',1);
+		$pdf->Cell(25,6,$date,1,0,'C',1);
 		$pdf->Cell(25,6,$time,1,0,'C',1);
 
     //Go to next row

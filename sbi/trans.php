@@ -74,6 +74,7 @@
              print "            <th><center>Operation</center></th>\n";
              print "            <th><center>OAP</center></th>\n";
              print "            <th><center>Ref No</center></th>\n";
+             print "            <th><center>Date</center></th>\n";
              print "            <th><center>Time</center></th>\n";
              print "         </tr>";
              print "</thead><tbody>";
@@ -87,7 +88,8 @@
                      echo "<td>". $get_column['opn']."</td>";
                      echo "<td>". $get_column['oap']."</td>";
                      echo "<td>". $get_column['refno']."</td>";
-                     echo "<td><center>". date('d-m-Y H:i',strtotime($get_column['stamp']))."</center></td>";
+                     echo "<td>". date('d M', strtotime($get_column['stamp'])) ."</td>";
+                     echo "<td>". date('h:i A', strtotime($get_column['stamp'])) ."</td>";
                      echo "</tr>";
                  }
              }
