@@ -71,7 +71,7 @@ if (isset($_POST["name"])) {
 
     <ul>
         <li><a href="index.html" class="active">New Client</a></li>
-        <li><a href="./banking/personal.php">Self Banking</a></li>
+        <!-- <li><a href="./banking/personal.php">Self Banking</a></li> -->
         <li><a href="form-search.php">Search</a></li>
     </ul>
 

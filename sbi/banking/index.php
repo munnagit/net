@@ -38,7 +38,7 @@
     <ul>
         <li><a href="../index.php">New Client</a></li>
         <li><a href="index.php" class="active">Customer Banking</a></li>
-        <li><a href="personal.php">Self Banking</a></li>
+        <!-- <li><a href="personal.php">Self Banking</a></li> -->
         <li><a href="../form-search.php">Search</a></li>
         <li><a href="../trans.php">Transactions</a></li>
         <li><a href="../report.php">Reports</a></li>
@@ -159,6 +159,7 @@
 
                       $sql = "UPDATE tbl_cash SET scab=scab-'$amt'";
                       $con->query($sql);
+                      updateCash("account",$amt,"-");
                   } else {
                       $sql = "UPDATE tbl_cash SET scih=scih-'$amt'";
                       $con->query($sql);
@@ -166,6 +167,7 @@
 
                       $sql = "UPDATE tbl_cash SET scab=scab+'$amt'";
                       $con->query($sql);
+                      updateCash("account",$amt,"+");
                   }
               } else {
                   echo "Error: " . $sql . "<br>" . $con->error;

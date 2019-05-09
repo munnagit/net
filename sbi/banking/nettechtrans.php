@@ -107,7 +107,7 @@
         <li><a href="../index.php">New Client</a></li>
         <li><a href="index.php">Customer Banking</a></li>
         <li><a href="nettechtrans.php" class="active">Nettech Transactions</a></li>
-        <li><a href="personal.php">Self Banking</a></li>
+        <!-- <li><a href="personal.php">Self Banking</a></li> -->
         <li><a href="../form-search.php">Search</a></li>
     </ul>
 
