@@ -48,7 +48,7 @@ include("sessions.php");
 
 			include("connection.php");
 			date_default_timezone_set("Asia/Kolkata");
-			$stamp=date("Y-m-d h:i:s");
+			$stamp=date("Y-m-d H:i:s");
 			$sql = "UPDATE tbl_sbitrans set oap = '$oap', opn = '$opn', amt = '$amt', refno = '$refno', updstamp = '$stamp' where tid = '$tid' ";
 			//echo $sql;
 

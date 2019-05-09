@@ -144,7 +144,7 @@
               //DB Connectivity & Insert Query
               include("../connection.php");
               date_default_timezone_set("Asia/Kolkata");
-              $stamp=date("Y-m-d h:i:s");
+              $stamp=date("Y-m-d H:i:s");
               $sql = "INSERT INTO tbl_sbitrans ". "(cid, oap, opn, amt, refno, stamp)". "VALUES('$cid','$oap','$opn','$amt','$refno','$stamp')";
               if ($con->query($sql) === true) {
                   //echo "New record created successfully"; echo "<br />";
