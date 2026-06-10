@@ -1,14 +1,27 @@
 #!/bin/bash
+set -x
 
 MNT=/mnt/sysroot
 
-mkdir -p $MNT
+mkdir -p "$MNT"
 
-mountpoint -q $MNT || mount /dev/sda1 $MNT
+echo "== Block devices =="
+lsblk -f
 
-for i in dev proc sys run
-do
-    mountpoint -q $MNT/$i || mount --bind /$i $MNT/$i
-done
+echo "== Mounting =="
 
-chroot $MNT /bin/bash
+mountpoint -q "$MNT" || mount /dev/sda1 "$MNT"
+
+echo "Mounted."
+
+mount --bind /dev "$MNT/dev"
+mount --bind /proc "$MNT/proc"
+mount --bind /sys "$MNT/sys"
+mount --bind /run "$MNT/run"
+
+echo "OS inside mounted filesystem:"
+cat "$MNT/etc/os-release"
+
+echo "Entering chroot..."
+
+exec chroot "$MNT" /bin/bash
