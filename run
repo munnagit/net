@@ -1,58 +1,88 @@
 #!/bin/bash
 set -e
 
-echo "==============================================="
-echo " Ubuntu Rescue Repair Script"
-echo "==============================================="
+echo "========================================="
+echo " Ubuntu Repair Script"
+echo "========================================="
 
 MNT=/mnt/sysroot
 
-mkdir -p $MNT
+mkdir -p "$MNT"
 
-if ! mount | grep -q "$MNT"; then
-    mount /dev/sda1 $MNT
+# Find Ubuntu partition
+if ! mountpoint -q "$MNT"; then
+    DEV=$(blkid -t LABEL=cloudimg-rootfs -o device | head -1)
+
+    if [ -z "$DEV" ]; then
+        DEV=/dev/sda1
+    fi
+
+    echo "Mounting $DEV..."
+    mount "$DEV" "$MNT"
 fi
 
-mount --bind /dev  $MNT/dev
-mount --bind /proc $MNT/proc
-mount --bind /sys  $MNT/sys
-mount --bind /run  $MNT/run
+for d in dev proc sys run; do
+    mountpoint -q "$MNT/$d" || mount --bind "/$d" "$MNT/$d"
+done
 
-cp /etc/resolv.conf $MNT/etc/resolv.conf
+mkdir -p "$MNT/etc"
 
-cat > $MNT/root/fix_inside_chroot.sh <<'EOF'
+cp -f /etc/resolv.conf "$MNT/etc/resolv.conf" 2>/dev/null || true
+
+cat > "$MNT/root/fix_inside.sh" <<"EOF"
 #!/bin/bash
 set -e
 
-echo "===== Inside Ubuntu ====="
+echo
+echo "=============================="
+echo " Running inside chroot"
+echo "=============================="
+
 cat /etc/os-release | head -3
+
+if ! grep -qi ubuntu /etc/os-release; then
+    echo
+    echo "ERROR: This is NOT Ubuntu."
+    exit 1
+fi
 
 echo
 echo "Updating apt..."
 apt update
 
 echo
-echo "Reinstalling packages..."
-DEBIAN_FRONTEND=noninteractive apt install --reinstall -y sudo openssh-server
+echo "Reinstalling sudo..."
+DEBIAN_FRONTEND=noninteractive apt install --reinstall -y sudo
 
 echo
-echo "Restoring sudo..."
+echo "Reinstalling OpenSSH..."
+DEBIAN_FRONTEND=noninteractive apt install --reinstall -y openssh-server
+
+echo
+echo "Fixing permissions..."
+
 chown root:root /usr/bin/sudo
 chmod 4755 /usr/bin/sudo
+
+chown root:root /bin/su
+chmod 4755 /bin/su
 
 chown root:root /etc/sudo.conf
 chmod 644 /etc/sudo.conf
 
-echo
-echo "Restoring SSH..."
+if [ -d /usr/libexec/sudo ]; then
+    chown -R root:root /usr/libexec/sudo
+    find /usr/libexec/sudo -type d -exec chmod 755 {} \;
+    chmod 644 /usr/libexec/sudo/*.so 2>/dev/null || true
+    chmod 755 /usr/libexec/sudo/sesh 2>/dev/null || true
+fi
+
 chown -R root:root /etc/ssh
 
 find /etc/ssh -type d -exec chmod 755 {} \;
 find /etc/ssh -type f -exec chmod 644 {} \;
 
-chmod 600 /etc/ssh/ssh_host_rsa_key 2>/dev/null || true
-chmod 600 /etc/ssh/ssh_host_ecdsa_key 2>/dev/null || true
-chmod 600 /etc/ssh/ssh_host_ed25519_key 2>/dev/null || true
+chmod 600 /etc/ssh/ssh_host_*_key 2>/dev/null || true
 chmod 644 /etc/ssh/*.pub 2>/dev/null || true
 
 mkdir -p /run/sshd
@@ -63,29 +93,23 @@ echo "Checking sshd..."
 
 echo
 echo "Checking sudo..."
-sudo -V | head -5
+sudo -V >/dev/null
 
 echo
-echo "Do you want to set a root password? (y/n)"
-read ANS
-
-if [ "$ANS" = "y" ]; then
-    passwd root
-fi
-
-echo
-echo "======================================"
-echo "Repair finished successfully."
-echo "Exit rescue mode and reboot normally."
-echo "======================================"
+echo "========================================="
+echo "SUCCESS!"
+echo "You can now:"
+echo "1. Exit Rescue Mode in OVH"
+echo "2. Boot normally"
+echo "3. Test: sudo -V"
+echo "========================================="
 EOF
 
-chmod +x $MNT/root/fix_inside_chroot.sh
+chmod +x "$MNT/root/fix_inside.sh"
 
 echo
 echo "Entering Ubuntu..."
-
-chroot $MNT /bin/bash -c "/root/fix_inside_chroot.sh"
+chroot "$MNT" /bin/bash /root/fix_inside.sh
 
 echo
-echo "Done."
+echo "Finished."
