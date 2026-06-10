@@ -1,5 +1,91 @@
-stat -c "%A %a %U %G %n" /etc/sudo.conf
-stat -c "%A %a %U %G %n" /usr/libexec/sudo/sudoers.so
-stat -c "%A %a %U %G %n" /usr/bin/sudo
-stat -c "%A %a %U %G %n" /usr/libexec/sudo
-stat -c "%A %a %U %G %n" /etc
+#!/bin/bash
+set -e
+
+echo "==============================================="
+echo " Ubuntu Rescue Repair Script"
+echo "==============================================="
+
+MNT=/mnt/sysroot
+
+mkdir -p $MNT
+
+if ! mount | grep -q "$MNT"; then
+    mount /dev/sda1 $MNT
+fi
+
+mount --bind /dev  $MNT/dev
+mount --bind /proc $MNT/proc
+mount --bind /sys  $MNT/sys
+mount --bind /run  $MNT/run
+
+cp /etc/resolv.conf $MNT/etc/resolv.conf
+
+cat > $MNT/root/fix_inside_chroot.sh <<'EOF'
+#!/bin/bash
+set -e
+
+echo "===== Inside Ubuntu ====="
+cat /etc/os-release | head -3
+
+echo
+echo "Updating apt..."
+apt update
+
+echo
+echo "Reinstalling packages..."
+DEBIAN_FRONTEND=noninteractive apt install --reinstall -y sudo openssh-server
+
+echo
+echo "Restoring sudo..."
+chown root:root /usr/bin/sudo
+chmod 4755 /usr/bin/sudo
+
+chown root:root /etc/sudo.conf
+chmod 644 /etc/sudo.conf
+
+echo
+echo "Restoring SSH..."
+chown -R root:root /etc/ssh
+
+find /etc/ssh -type d -exec chmod 755 {} \;
+find /etc/ssh -type f -exec chmod 644 {} \;
+
+chmod 600 /etc/ssh/ssh_host_rsa_key 2>/dev/null || true
+chmod 600 /etc/ssh/ssh_host_ecdsa_key 2>/dev/null || true
+chmod 600 /etc/ssh/ssh_host_ed25519_key 2>/dev/null || true
+chmod 644 /etc/ssh/*.pub 2>/dev/null || true
+
+mkdir -p /run/sshd
+
+echo
+echo "Checking sshd..."
+/usr/sbin/sshd -t
+
+echo
+echo "Checking sudo..."
+sudo -V | head -5
+
+echo
+echo "Do you want to set a root password? (y/n)"
+read ANS
+
+if [ "$ANS" = "y" ]; then
+    passwd root
+fi
+
+echo
+echo "======================================"
+echo "Repair finished successfully."
+echo "Exit rescue mode and reboot normally."
+echo "======================================"
+EOF
+
+chmod +x $MNT/root/fix_inside_chroot.sh
+
+echo
+echo "Entering Ubuntu..."
+
+chroot $MNT /bin/bash -c "/root/fix_inside_chroot.sh"
+
+echo
+echo "Done."
